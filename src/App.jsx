@@ -1,6 +1,9 @@
+
+import Header from "./HeadContain/Header"
+
 function App() {
   return (
-    <p className="text-yellow-300">Test</p>
+    <Header />
   )
 }
 
