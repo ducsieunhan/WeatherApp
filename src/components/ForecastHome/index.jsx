@@ -4,6 +4,7 @@ import ForecastCityList from "./ForecastCityList"
 import { useEffect, useState } from "react"
 import CountrySelector from "./CountrySelector"
 import Loading from "../Loading"
+import CityWeatherPinned from "./CityWeatherPinned"
 
 const ForecastOverall = () => {
 
@@ -69,7 +70,9 @@ const ForecastOverall = () => {
         {isOpenCountryList && <CountrySelector setIsOpenCountryList={setIsOpenCountryList} currentCountry={currentCountry} setCurrentCountry={setCurrentCountry} />}
         <ForecastCityList countryWeatherList={countryWeatherList} />
       </div>
-      <div className="flex-1 w-full h-full "></div>
+      <div className="flex-1 w-full h-full ">
+        <CityWeatherPinned />
+      </div>
     </div>
   )
 }
