@@ -1,16 +1,12 @@
-import { faDroplet } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import ForecastSpeCity from "./ForecastSpeCity"
 
-const ForecastCityList = () => {
+
+const ForecastCityList = ({ countryWeatherList }) => {
   return (
-    <div className="cursor-pointer text-20 w-40 h-44 bg-blue-900 hover:bg-blue-800 rounded-xl p-5 flex flex-col items-center gap-2 border border-slate-300">
-      <h3>Ha Noi</h3>
-      <div className="flex gap-5" >
-        <img src="/public/icons/clouds.png" className="w-[40%]" />
-        <span className="text-[14px]"><FontAwesomeIcon icon={faDroplet} /> 95%</span>
-      </div>
-      <h3>Cloudy</h3>
-      <p className='font-bold text-[18px] flex justify-center items-center' >28 &deg;C / 28 &deg;C</p>
+    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+      {
+        countryWeatherList.map(country => <ForecastSpeCity key={country.id} humidity={country.main.humidity} name={country.name} tempMax={country.main.temp_max} tempMin={country.main.temp_min} description={country.weather.description} />)
+      }
     </div>
   )
 }
