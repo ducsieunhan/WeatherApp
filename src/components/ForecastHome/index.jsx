@@ -63,14 +63,14 @@ const ForecastOverall = () => {
   }
 
   return (
-    <div className="flex relative max-w-screen-xl mx-auto h-screen items-center justify-center gap-5 p-5 text-white z-0">
-      <div className="flex-[2] w-full h-full">
+    <div className="flex flex-col md:flex-row relative max-w-screen-xl mx-auto  md:items-start h-full justify-center  gap-1 p-5 text-white z-0">
+      <div className="md:w-2/3 w-full h-full order-1 md:order-1 p-4">
         <h3 className="mb-3"><FontAwesomeIcon icon={faMagnifyingGlass} /> Weather Forecast of cities in <span onClick={() => setIsOpenCountryList(!isOpenCountryList)} className="underline decoration-dotted cursor-pointer">{currentCountry.label ? currentCountry.label : "Vietnam"}
         </span></h3>
         {isOpenCountryList && <CountrySelector setIsOpenCountryList={setIsOpenCountryList} currentCountry={currentCountry} setCurrentCountry={setCurrentCountry} />}
         <ForecastCityList countryWeatherList={countryWeatherList} />
       </div>
-      <div className="flex-1 w-full h-full ">
+      <div className="md:w-1/3 w-full  md:flex-1 md:h-full order-2 md:top-0 p-4">
         <CityWeatherPinned />
       </div>
     </div>

@@ -53,7 +53,7 @@ const BackgroundLayout = () => {
 
 
   return (
-    <img src={background[count].src} className='absolute h-screen w-full left-0 top-0 -z-[10] object-cover ' />
+    <img src={background[count].src} className='absolute h-screen w-full left-0 top-0 -z-[10] object-cover brightness-50' />
   )
 }
 export default BackgroundLayout
