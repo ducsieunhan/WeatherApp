@@ -9,12 +9,17 @@ import Loading from "../Loading"
 import { faEye } from "@fortawesome/free-regular-svg-icons"
 
 
-const IndicatorMain = () => {
+const IndicatorMain = ({ cityName }) => {
+
+  console.log(cityName);
+
 
 
   const { data: currentCity, isLoading: isLoading } = useSpeCity({
-    url: `/weather?q=Ha%20Noi&units=metric&`
+    url: `/weather?q=${cityName}&units=metric&`
   })
+
+
 
   const currentCityPinned = currentCity || [];
   console.log({ currentCityPinned });
@@ -31,7 +36,7 @@ const IndicatorMain = () => {
     isLoading ? <Loading /> : (
 
       <div className="flex flex-col">
-        <h3 className="cursor-pointer"><FontAwesomeIcon icon={faMapPin} /> Weather forecast at Da Nang   <FontAwesomeIcon className="pl-3" icon={faHome} /></h3>
+        <h3 className="cursor-pointer"><FontAwesomeIcon icon={faMapPin} /> Weather forecast at {cityName}   <FontAwesomeIcon className="pl-3" icon={faHome} /></h3>
         <div className="flex p-4  gap-3">
           <img src={cloud} className="w-14 md:w-[3vw]" />
           <p className="font-bold text-[15px] md:text-[1.7vw]">{currentCityPinned.main?.temp.toFixed(1) ?? "Loading..."}&deg;</p>

@@ -7,7 +7,7 @@ const ForecastCityList = ({ countryWeatherList }) => {
       {
         countryWeatherList.map(country => <ForecastSpeCity key={country.id} humidity={country.main.humidity}
           name={country.name} tempMax={country.main.temp_max} tempMin={country.main.temp_min} description={country.weather[0].description}
-          condition={country.weather[0].main} />)
+          condition={country.weather[0].main} label={country.sys.country} />)
       }
     </div>
   )

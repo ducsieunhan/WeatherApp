@@ -4,36 +4,36 @@ import NearByCity from "./NearByCity"
 import { useEffect, useState } from "react";
 import Loading from "../../Loading";
 
-const NearbyCitiesList = () => {
+const NearbyCitiesList = ({ cityListId }) => {
 
-  const [currentCountry, setCurrentCountry] = useState({
-    value: 'VN',
-  });
+  // const [currentCountry, setCurrentCountry] = useState({
+  //   value: 'VN',
+  // });
 
-  const [cityListId, setCityListId] = useState([]);
+  // const [cityListId, setCityListId] = useState([]);
   const [countryWeatherList, setCountryWeatherList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const randomNum = Math.round(Math.random() * 5);
+  // const randomNum = Math.round(Math.random() * 5);
   // console.log(randomNum);
 
 
-  useEffect(() => {
-    fetch(`http://api.geonames.org/searchJSON?country=${currentCountry.value}&maxRows=100&username=ducsieunhan&featureClass=P&style=SHORT`, {
-      method: 'GET',
-      headers: {
-        accept: 'application/json'
-      }
-    })
-      .then(async (res) => {
-        const data = await res.json();
-        // console.log({ data });
-        const currentCityList = (data.geonames || []).slice(0 + randomNum, 7 + randomNum);
-        const currentCityListId = currentCityList.map(city => city.geonameId);
-        console.log({ currentCityListId });
-        setCityListId(currentCityListId);
-      })
-  }, [currentCountry])
+  // useEffect(() => {
+  //   fetch(`http://api.geonames.org/searchJSON?country=${currentCountry.value}&maxRows=100&username=ducsieunhan&featureClass=P&style=SHORT`, {
+  //     method: 'GET',
+  //     headers: {
+  //       accept: 'application/json'
+  //     }
+  //   })
+  //     .then(async (res) => {
+  //       const data = await res.json();
+  //       // console.log({ data });
+  //       const currentCityList = (data.geonames || []).slice(0 + randomNum, 7 + randomNum);
+  //       const currentCityListId = currentCityList.map(city => city.geonameId);
+  //       console.log({ currentCityListId });
+  //       setCityListId(currentCityListId);
+  //     })
+  // }, [currentCountry])
 
   useEffect(() => {
     if (cityListId.length === 0) return;
