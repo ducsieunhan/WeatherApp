@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import CityForecastComingDays from "./CityForecastComingDays"
+import CityForecastComingDays from "./ForecastHome/CityForecastComingDays"
 import { faMapPin } from "@fortawesome/free-solid-svg-icons"
-import TableIndicator from "./TableIndicator"
-import { capitalizeWords } from "../../libs/utils"
-import Loading from "../Loading"
-import { useSpeCity } from "../../hooks/useSpeCity"
-import useWeatherConditionIcon from "../../hooks/useWeatherConditionIcon"
+import TableIndicator from "./ForecastHome/TableIndicator"
+import { capitalizeWords } from "../libs/utils"
+import Loading from "./Loading"
+import { useSpeCity } from "../hooks/useSpeCity"
+import useWeatherConditionIcon from "../hooks/useWeatherConditionIcon"
 
 
 const CityWeatherPinned = () => {

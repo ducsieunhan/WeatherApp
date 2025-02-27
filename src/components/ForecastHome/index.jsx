@@ -4,7 +4,7 @@ import ForecastCityList from "./ForecastCityList"
 import { useEffect, useState } from "react"
 import CountrySelector from "./CountrySelector"
 import Loading from "../Loading"
-import CityWeatherPinned from "./CityWeatherPinned"
+import CityWeatherPinned from "../CityWeatherPinned"
 
 const ForecastOverall = () => {
 

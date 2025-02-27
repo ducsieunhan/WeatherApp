@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Homepage from './pages/Homepage.jsx'
 import RootLayout from './pages/RootLayout.jsx'
 import CityDetail from './pages/CityDetail.jsx'
+import CityDetailTime from './pages/CityDetailTime.jsx'
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: '/city',
         element: <CityDetail />
+      },
+      {
+        path: '/:cityName/byHours',
+        element: <CityDetailTime />
       }
     ]
   }

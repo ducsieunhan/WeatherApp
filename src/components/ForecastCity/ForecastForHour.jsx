@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import ForecastSpeCity from "../ForecastSpeCity";
 import Loading from "../Loading";
 import { UseExtractWeatherData } from "../../hooks/useExtractWeatherData";
+import { Link } from "react-router-dom";
 
 const ForecastForHour = ({ cityName }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -128,9 +129,9 @@ const ForecastForHour = ({ cityName }) => {
           </span>{" "}
           (24h)
         </p>
-        <p className="bg-white/[0.2] hover:bg-white/[0.1] cursor-pointer p-2">
+        <Link to={`/${cityName}/byHours`} className="bg-white/[0.2] hover:bg-white/[0.1] cursor-pointer p-2">
           24h comings
-        </p>
+        </Link>
       </div>
       <Slider {...settings} className="mb-5">
         {weather24hours.map((timeAt, index) => (
