@@ -1,17 +1,19 @@
 /* eslint-disable react/prop-types */
 import { faDroplet } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { capitalizeWords } from "../../libs/utils"
-import useWeatherConditionIcon from "../../hooks/useWeatherConditionIcon"
+import { capitalizeWords } from "../libs/utils"
+import useWeatherConditionIcon from "../hooks/useWeatherConditionIcon"
 import { Link } from "react-router-dom"
 
 
-const ForecastSpeCity = ({ humidity, name, tempMin, tempMax, description, condition, label }) => {
+const ForecastSpeCity = ({ humidity, name, tempMin, tempMax, description, condition, label,
+  bg = "bg-blue-900/70", bgHover = "hover:bg-blue-900", border = "border-slate-300 ", className = "" }) => {
 
   const iconWeather = useWeatherConditionIcon({ condition });
 
   return (
-    <Link to={`/city?city=${name}&label=${label}`} className="cursor-pointer text-20 w-44 h-48 bg-blue-900/70 hover:bg-blue-900 rounded-xl p-5 flex flex-col items-center gap-3 border border-slate-300">
+    <Link to={`/city?city=${name}&label=${label}`}
+      className={`cursor-pointer text-20 w-44 h-48 ${bg} ${bgHover} rounded-xl p-5 flex flex-col items-center gap-3 border ${border} ${className}`}>
       <h3>{name}</h3>
       <div className="flex gap-5" >
         <img src={iconWeather} className="w-[40%]" />

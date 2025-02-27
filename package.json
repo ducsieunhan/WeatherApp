@@ -21,6 +21,8 @@
     "react-router-dom": "^7.2.0",
     "react-select": "^5.10.0",
     "react-select-country-list": "^2.2.3",
+    "react-slick": "^0.30.3",
+    "slick-carousel": "^1.8.1",
     "weatherapp": "file:"
   },
   "devDependencies": {

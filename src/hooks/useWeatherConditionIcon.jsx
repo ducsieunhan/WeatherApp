@@ -6,6 +6,7 @@ import snow from '/public/icons/snow.png'
 import storm from '/public/icons/storm.png'
 import wind from '/public/icons/windy.png'
 import clear from '/public/icons/clear.png'
+import partlyCloudy from '/public/icons/partly-cloudy.png'
 import { useEffect, useState } from 'react'
 
 
@@ -20,7 +21,16 @@ export function useWeatherConditionIcon({ condition }) {
       else if (condition.toLowerCase().includes('clouds')) {
         setIconWeather(cloud);
       }
+      else if (condition.toLowerCase().includes('partly cloudy')) {
+        setIconWeather(partlyCloudy);
+      }
+      else if (condition.toLowerCase().includes('overcast')) {
+        setIconWeather(cloud);
+      }
       else if (condition.toLowerCase().includes('mist')) {
+        setIconWeather(mist);
+      }
+      else if (condition.toLowerCase().includes('fog')) {
         setIconWeather(mist);
       }
       else if (condition.toLowerCase().includes('rain')) {

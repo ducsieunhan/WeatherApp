@@ -1,4 +1,4 @@
-import ForecastSpeCity from "./ForecastSpeCity"
+import ForecastSpeCity from "../ForecastSpeCity"
 
 
 const ForecastCityList = ({ countryWeatherList }) => {

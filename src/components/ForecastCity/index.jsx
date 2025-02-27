@@ -1,9 +1,11 @@
-import { useParams, useSearchParams } from "react-router-dom"
+import { useSearchParams } from "react-router-dom"
 import IndicatorMain from "./IndicatorMain"
 import NearbyCitiesList from "./Nearby/NearbyCitiesList"
 import { useEffect, useState } from "react";
 import Loading from "../Loading";
 import RainQuantityMainCity from "./RainQuantityMainCity";
+import ForecastForHour from "./ForecastForHour";
+import { UseExtractWeatherData } from "../../hooks/useExtractWeatherData";
 
 const ForecastSpecificCity = () => {
 
@@ -37,7 +39,7 @@ const ForecastSpecificCity = () => {
   }, [label])
 
   if (isLoading) {
-    (<Loading />)
+    return (<Loading />)
   }
 
   return (
@@ -45,6 +47,7 @@ const ForecastSpecificCity = () => {
       <div className="md:w-2/3 w-full h-full order-1 md:order-1 p-4  flex flex-col gap-3">
         <IndicatorMain cityName={city} />
         <RainQuantityMainCity cityName={city} label={label} />
+        <ForecastForHour cityName={city} />
       </div>
       <div className="md:w-1/3 w-full  md:flex-1 md:h-full order-2 md:top-0 p-4 bg-white/[0.1] border border-slate-600">
         <NearbyCitiesList cityListId={cityListId} />
