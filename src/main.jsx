@@ -6,6 +6,7 @@ import Homepage from './pages/Homepage.jsx'
 import RootLayout from './pages/RootLayout.jsx'
 import CityDetail from './pages/CityDetail.jsx'
 import CityDetailTime from './pages/CityDetailTime.jsx'
+import CityDetailDays from './pages/CityDetailDays.jsx'
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: '/:cityName/byHours',
         element: <CityDetailTime />
+      },
+      {
+        path: '/:cityName/:days',
+        element: <CityDetailDays />
       }
     ]
   }

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Loading from "../Loading";
 import RainQuantityMainCity from "./RainQuantityMainCity";
 import ForecastForHour from "./ForecastForHour";
+import ForecastForDays from "./ForecastForDays";
 import { UseExtractWeatherData } from "../../hooks/useExtractWeatherData";
 
 const ForecastSpecificCity = () => {
@@ -30,7 +31,7 @@ const ForecastSpecificCity = () => {
         // console.log({ data });
         const currentCityList = (data.geonames || []).slice(0 + randomNum, 7 + randomNum);
         const currentCityListId = currentCityList.map(city => city.geonameId);
-        console.log({ currentCityListId });
+        // console.log({ currentCityListId });
         setCityListId(currentCityListId);
       })
       .finally(() => {
@@ -48,6 +49,7 @@ const ForecastSpecificCity = () => {
         <IndicatorMain cityName={city} />
         <RainQuantityMainCity cityName={city} label={label} />
         <ForecastForHour cityName={city} />
+        <ForecastForDays cityName={city} />
       </div>
       <div className="md:w-1/3 w-full  md:flex-1 md:h-full order-2 md:top-0 p-4 bg-white/[0.1] border border-slate-600">
         <NearbyCitiesList cityListId={cityListId} />

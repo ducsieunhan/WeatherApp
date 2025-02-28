@@ -4,45 +4,45 @@ import { useState } from "react";
 import cloud from "/public/icons/clouds.png"
 
 
-const PerTime = () => {
+const PerTime = ({ humidity, pressure, temp_min, temp_max, time, uv, description, windSpeed }) => {
   const [isOpenExtra, setIsOpenExtra] = useState(false);
 
   return (
     <div className="flex flex-col cursor-pointer border-b pb-2 border-slate-200">
-      <div className="flex flex-row justify-between items-center" onClick={() => setIsOpenExtra(!isOpenExtra)}>
-        <p>08:00</p>
-        <div><span>15.1°C</span>/<span className="font-bold text-[1.2vw] text-black">15.2°C</span></div>
-        <div className="flex items-center gap-2">
+      <div className="grid grid-cols-5 gap-1 w-full items-center" onClick={() => setIsOpenExtra(!isOpenExtra)}>
+        <p>{time}</p>
+        <div className="justify-self-start"><span>{temp_min}°C</span>/<span className="font-bold text-[1.2vw] text-black">{temp_max}°C</span></div>
+        <div className="flex items-center gap-2 justify-self-center">
           <img src={cloud} className="w-14 md:w-[3vw]" />
-          <p>Overclouds</p>
+          <p className="max-w-[50px] ">{description}</p>
         </div>
-        <div className="flex gap-2">
-          <p><FontAwesomeIcon icon={faDroplet} />100%</p>
-          <p><FontAwesomeIcon icon={faWind} />1.3 km/h</p>
+        <div className="flex gap-2 justify-self-end ">
+          <p><FontAwesomeIcon icon={faDroplet} />{humidity}%</p>
+          <p><FontAwesomeIcon icon={faWind} />{windSpeed} km/h</p>
         </div>
-        <FontAwesomeIcon icon={faAngleDown} />
+        <FontAwesomeIcon icon={faAngleDown} className="justify-self-end" />
       </div>
 
-      {isOpenExtra && <div className="flex flex-row justify-between pt-3">
+      {isOpenExtra && <div className="flex flex-row justify-between pt-3 transform">
         <div className="flex flex-row gap-2 items-center">
           <FontAwesomeIcon icon={faCertificate} className="text-[1.2vw]" />
           <div>
             <h2>UV indicator</h2>
-            <p>0.51</p>
+            <p>{uv}</p>
           </div>
         </div>
         <div className="flex flex-row gap-2 items-center">
           <FontAwesomeIcon icon={faEye} className="text-[1.2vw]" />
           <div>
-            <h2>UV indicator</h2>
-            <p>0.51</p>
+            <h2>Visibility</h2>
+            <p>10 km</p>
           </div>
         </div>
         <div className="flex flex-row gap-2 items-center">
           <FontAwesomeIcon icon={faGauge} className="text-[1.2vw]" />
           <div>
-            <h2>UV indicator</h2>
-            <p>0.51</p>
+            <h2>Pressure</h2>
+            <p>{pressure}</p>
           </div>
         </div>
       </div>}

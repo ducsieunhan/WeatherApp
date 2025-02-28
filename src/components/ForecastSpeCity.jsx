@@ -7,12 +7,13 @@ import { Link } from "react-router-dom"
 
 
 const ForecastSpeCity = ({ humidity, name, tempMin, tempMax, description, condition, label,
-  bg = "bg-blue-900/70", bgHover = "hover:bg-blue-900", border = "border-slate-300 ", className = "" }) => {
+  bg = "bg-blue-900/70", bgHover = "hover:bg-blue-900", border = "border-slate-300 ", className = "", isCity = true }) => {
 
   const iconWeather = useWeatherConditionIcon({ condition });
 
   return (
-    <Link to={`/city?city=${name}&label=${label}`}
+    <Link to={isCity ? `/city?city=${name}&label=${label}` : '#'}
+      onClick={(e) => !isCity && e.preventDefault()}
       className={`cursor-pointer text-20 w-44 h-48 ${bg} ${bgHover} rounded-xl p-5 flex flex-col items-center gap-3 border ${border} ${className}`}>
       <h3>{name}</h3>
       <div className="flex gap-5" >

@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 
-export function UseExtractWeatherData(data) {
+export function UseExtractWeatherData(cityName) {
 
+  const [isLoading, setIsLoading] = useState(false);
   const [extractedData, setExtractedData] = useState([]);
+  const [position, setPosition] = useState({ lat: null, lon: null });
+  const [weatherData, setWeatherData] = useState(null);
   // const [isLoading, setIsLoading] = useState(false);
+
 
 
   const getWeatherDescription = (weathercode) => {
@@ -30,9 +34,62 @@ export function UseExtractWeatherData(data) {
     return weatherDescriptions[weathercode] || "Unknown";
   };
 
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${import.meta.env.VITE_API_TOKEN}`, {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+      },
+    })
+      .then(async (res) => {
+        const data = await res.json();
+        // console.log({ data });
+        setPosition({
+          "lat": data[0].lat,
+          "lon": data[0].lon
+        })
+
+      })
+      .catch(err => {
+        console.error(err);
+      }).finally(() => {
+        setIsLoading(false);
+      })
+  }, [cityName])
+
+  useEffect(() => {
+    if (!position.lat || !position.lon) return;
+    setIsLoading(true);
+    fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${position.lat}&longitude=${position.lon}&hourly=temperature_2m,relativehumidity_2m,weathercode,precipitation,windspeed_10m,winddirection_10m,pressure_msl,uv_index`,
+      {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+        },
+      }
+    )
+      .then(async (res) => {
+        const data = await res.json();
+        // console.log({ data });
+        setWeatherData(data);
+
+      })
+      .catch((err) => {
+        console.error("Lỗi khi fetch dữ liệu thời tiết:", err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [position]);
+
+
   useEffect(() => {
     // setIsLoading(true);
-    if (data && data.hourly) {
+    if (weatherData && weatherData.hourly) {
+
       const {
         temperature_2m,
         relativehumidity_2m,
@@ -43,7 +100,7 @@ export function UseExtractWeatherData(data) {
         uv_index,
         time,
         weathercode,
-      } = data.hourly;
+      } = weatherData.hourly;
 
       const next24Hours = time
         .map((timestamp, index) => ({
@@ -62,7 +119,11 @@ export function UseExtractWeatherData(data) {
 
       setExtractedData(next24Hours);
     }
-  }, [data]);
+  }, [weatherData]);
 
-  return extractedData;
+  // useEffect(() => {
+  //   console.log({ extractedData });
+  // }, [extractedData]);
+
+  return { weather24hours: extractedData, isLoading };
 }

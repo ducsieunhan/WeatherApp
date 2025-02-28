@@ -29,7 +29,7 @@ const ForecastOverall = () => {
         // console.log({ data });
         const currentCityList = (data.geonames || []).slice(0, 12);
         const currentCityListId = currentCityList.map(city => city.geonameId);
-        console.log({ currentCityListId });
+        // console.log({ currentCityListId });
         setCityListId(currentCityListId);
       })
   }, [currentCountry])
@@ -47,7 +47,7 @@ const ForecastOverall = () => {
       .then(async (res) => {
         const data = await res.json();
         setCountryWeatherList(data.list || []);
-        console.log({ countryWeatherList });
+        // console.log({ countryWeatherList });
       })
       .catch(err => {
         console.log(err);

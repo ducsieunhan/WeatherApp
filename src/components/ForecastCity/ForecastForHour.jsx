@@ -1,6 +1,5 @@
 import { faAngleLeft, faAngleRight, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -10,11 +9,10 @@ import { UseExtractWeatherData } from "../../hooks/useExtractWeatherData";
 import { Link } from "react-router-dom";
 
 const ForecastForHour = ({ cityName }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [position, setPosition] = useState({ lat: null, lon: null });
-  const [weatherData, setWeatherData] = useState(null);
+  const { weather24hours, isLoading } = UseExtractWeatherData(cityName);
 
-  const weather24hours = UseExtractWeatherData(weatherData);
+  // console.log(weather24hours);
+
 
   const CustomArrow = ({ onClick, direction }) => (
     <button
@@ -59,61 +57,6 @@ const ForecastForHour = ({ cityName }) => {
     ],
   };
 
-
-  useEffect(() => {
-    setIsLoading(true);
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${import.meta.env.VITE_API_TOKEN}`, {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-      },
-    })
-      .then(async (res) => {
-        const data = await res.json();
-        // console.log({ data });
-        setPosition({
-          "lat": data[0].lat,
-          "lon": data[0].lon
-        })
-
-      })
-      .catch(err => {
-        console.error(err);
-      }).finally(() => {
-        setIsLoading(false);
-      })
-  }, [cityName])
-
-  useEffect(() => {
-    if (!position.lat || !position.lon) return;
-    setIsLoading(true);
-    fetch(
-      `https://api.open-meteo.com/v1/forecast?latitude=${position.lat}&longitude=${position.lon}&hourly=temperature_2m,relativehumidity_2m,weathercode,precipitation,windspeed_10m,winddirection_10m,pressure_msl,uv_index`,
-      {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-        },
-      }
-    )
-      .then(async (res) => {
-        const data = await res.json();
-        // console.log({ data });
-        setWeatherData(data);
-
-      })
-      .catch((err) => {
-        console.error("Lỗi khi fetch dữ liệu thời tiết:", err);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [position]);
-
-  useEffect(() => {
-    console.log({ weather24hours });
-  }, [weather24hours]);
-
   if (isLoading) {
     return <Loading />
   }
@@ -135,7 +78,7 @@ const ForecastForHour = ({ cityName }) => {
       </div>
       <Slider {...settings} className="mb-5">
         {weather24hours.map((timeAt, index) => (
-          <ForecastSpeCity key={index} humidity={timeAt.humidity} name={timeAt.time} tempMin={timeAt.temperature} tempMax={timeAt.temperature} description={timeAt.weatherDescription} condition={timeAt.weatherDescription} label={''}
+          <ForecastSpeCity isCity={false} key={index} humidity={timeAt.humidity} name={timeAt.time} tempMin={timeAt.temperature} tempMax={timeAt.temperature} description={timeAt.weatherDescription} condition={timeAt.weatherDescription} label={''}
             bg="bg-white/[0.1]" bgHover="hover:bg-white/[0.05]" border="border-slate-500"
           />
         ))}

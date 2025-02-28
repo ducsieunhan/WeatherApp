@@ -8,12 +8,12 @@ import { useSpeCity } from "../hooks/useSpeCity"
 import useWeatherConditionIcon from "../hooks/useWeatherConditionIcon"
 
 
-const CityWeatherPinned = () => {
+const CityWeatherPinned = ({ cityName = "Hanoi" }) => {
 
   const daysComing = ['Today', 'Tomorrow', '3 days', '5 days', '7 days', '10 days', '15 days', '30 days'];
 
   const { data: currentCity, isLoading: isLoading } = useSpeCity({
-    url: `/weather?q=Ha%20Noi&units=metric&`
+    url: `/weather?q=${cityName}&units=metric&`
   })
 
   const weatherMain = currentCity?.weather?.[0]?.main ?? "";
@@ -22,7 +22,7 @@ const CityWeatherPinned = () => {
   if (isLoading) return <div>Loading...</div>;
 
   const currentCityPinned = currentCity || {};
-  console.log({ weatherMain });
+  // console.log({ weatherMain });
 
   return (
 
@@ -30,7 +30,7 @@ const CityWeatherPinned = () => {
 
 
       <div className="bg-blue-900/80 border border-slate-200 h-full w-full p-2 text-sm md:text-base flex flex-col gap-2 md:gap-0">
-        <p className="font-bold"><FontAwesomeIcon icon={faMapPin} /> Ha Noi</p>
+        <p className="font-bold"><FontAwesomeIcon icon={faMapPin} /> {cityName}</p>
         <p>Updated 25 minutes later</p>
         <div className="flex flex-row justify-start items-center ml-3 relative">
           <img src={iconWeather} className="w-10 md:w-16 absolute" />

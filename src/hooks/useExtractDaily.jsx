@@ -4,15 +4,15 @@ const DEFAULT_HEADERS = {
   accept: 'application/json',
 }
 
-export function useSpeCity({ url = '', method = 'GET' }) {
+export function useExtractDaily({ cityName, method = 'GET' }) {
 
-  const [data, setData] = useState();
+  const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`${import.meta.env.VITE_API_HOST}${url}appid=${import.meta.env.VITE_API_TOKEN}`, {
+    fetch(`http://api.weatherapi.com/v1/forecast.json?key=${import.meta.env.VITE_API_TOKEN_2}&q=${cityName}&days=14&aqi=no&alerts=no`, {
       method,
       headers: {
         ...DEFAULT_HEADERS,
@@ -28,6 +28,6 @@ export function useSpeCity({ url = '', method = 'GET' }) {
       }).finally(() => {
         setIsLoading(false);
       })
-  }, [url, method]);
-  return { isLoading, data };
+  }, [cityName, method]);
+  return { data, isLoading };
 }

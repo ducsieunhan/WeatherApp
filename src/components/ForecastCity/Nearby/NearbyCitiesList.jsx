@@ -25,7 +25,7 @@ const NearbyCitiesList = ({ cityListId }) => {
       .then(async (res) => {
         const data = await res.json();
         setCountryWeatherList(data.list || []);
-        console.log({ countryWeatherList });
+        // console.log({ countryWeatherList });
       })
       .catch(err => {
         console.log(err);

@@ -16,7 +16,7 @@ const IndicatorMain = ({ cityName }) => {
   })
 
   const currentCityPinned = currentCity || [];
-  console.log({ currentCityPinned });
+  // console.log({ currentCityPinned });
 
   const calculateDewPoint = (temp, humidity) => {
     return temp - ((100 - humidity) / 5);
