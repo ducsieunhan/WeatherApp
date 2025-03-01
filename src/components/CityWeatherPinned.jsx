@@ -29,7 +29,7 @@ const CityWeatherPinned = ({ cityName = "Hanoi" }) => {
     isLoading ? <Loading /> : (
 
 
-      <div className="bg-blue-900/80 border border-slate-200 h-full w-full p-2 text-sm md:text-base flex flex-col gap-2 md:gap-0">
+      <div className="bg-blue-900/70 border border-[rgba(255,255,255,0.5)] h-full w-full p-2 text-sm md:text-base flex flex-col gap-2 md:gap-0">
         <p className="font-bold"><FontAwesomeIcon icon={faMapPin} /> {cityName}</p>
         <p>Updated 25 minutes later</p>
         <div className="flex flex-row justify-start items-center ml-3 relative">

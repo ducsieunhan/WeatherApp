@@ -1,5 +1,4 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import rain from '/public/icons/rain.png'
 import { faCertificate, faCloudRain, faDroplet, faGauge, faSun, faTemperature1, faTemperature3, faWind } from '@fortawesome/free-solid-svg-icons'
 import useWeatherConditionIcon from '../../hooks/useWeatherConditionIcon';
 

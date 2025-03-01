@@ -5,7 +5,13 @@ export default {
     "./src/**/*.{js,jsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        strong: "#24498f",
+        medium: "#006b3d",
+        light: "#6ac3e0"
+      }
+    },
     fontSize: {
       10: '10px'
     }

@@ -33,7 +33,7 @@ const IndicatorMain = ({ cityName }) => {
 
     isLoading ? <Loading /> : (
 
-      <div className="flex flex-col bg-white/[0.1] border border-slate-600 py-2 px-1" >
+      <div className="flex flex-col bg-white/[0.05] border border-[rgba(255,255,255,0.08)] py-2 px-1" >
         <h3 className="cursor-pointer"><FontAwesomeIcon icon={faMapPin} /> Weather forecast at {cityName}   <FontAwesomeIcon className="pl-3" icon={faHome} /></h3>
         <div className="flex p-4  gap-3">
           <img src={weatherIcon} className="w-14 md:w-[3vw]" />

@@ -50,7 +50,7 @@ const ForecastForHour = ({ cityName }) => {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
@@ -63,7 +63,7 @@ const ForecastForHour = ({ cityName }) => {
 
 
   return (
-    <div className="bg-white/[0.1] border border-slate-600 py-2 px-1 flex flex-col gap-4 text-[0.9vw]">
+    <div className="bg-white/[0.05] border border-[rgba(255,255,255,0.08)] py-2 px-1 flex flex-col gap-4 text-[0.9vw]">
       <div className="flex flex-row justify-between items-center">
         <p>
           Hourly weather in <FontAwesomeIcon icon={faSearch} />{" "}
@@ -79,7 +79,7 @@ const ForecastForHour = ({ cityName }) => {
       <Slider {...settings} className="mb-5">
         {weather24hours.map((timeAt, index) => (
           <ForecastSpeCity isCity={false} key={index} humidity={timeAt.humidity} name={timeAt.time} tempMin={timeAt.temperature} tempMax={timeAt.temperature} description={timeAt.weatherDescription} condition={timeAt.weatherDescription} label={''}
-            bg="bg-white/[0.1]" bgHover="hover:bg-white/[0.05]" border="border-slate-500"
+            bg="bg-white/[0.1]" bgHover="hover:bg-white/[0.05]" border="border-[rgba(255,255,255,0.08)]"
           />
         ))}
       </Slider>

@@ -3,7 +3,7 @@ import ForecastCityByDaily from "../components/ForecastCityByDaily"
 
 const CityDetailTime = () => {
   return (
-    <div className="relative bg-blue-900 h-full w-full text-white">
+    <div className="relative bg-[#275eaf] h-full w-full text-white">
       <Breadcum />
       <ForecastCityByDaily />
     </div>

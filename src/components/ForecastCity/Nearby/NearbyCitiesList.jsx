@@ -4,12 +4,36 @@ import NearByCity from "./NearByCity"
 import { useEffect, useState } from "react";
 import Loading from "../../Loading";
 
-const NearbyCitiesList = ({ cityListId }) => {
-
-
+const NearbyCitiesList = ({ label }) => {
 
   const [countryWeatherList, setCountryWeatherList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const randomNum = Math.round(Math.random() * 5);
+  const [cityListId, setCityListId] = useState([]);
+
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetch(`http://api.geonames.org/searchJSON?country=${label}&maxRows=100&username=ducsieunhan&featureClass=P&style=SHORT`, {
+      method: 'GET',
+      headers: {
+        accept: 'application/json'
+      }
+    })
+      .then(async (res) => {
+        const data = await res.json();
+        // console.log({ data });
+        const currentCityList = (data.geonames || []).slice(0 + randomNum, 7 + randomNum);
+        const currentCityListId = currentCityList.map(city => city.geonameId);
+        // console.log({ currentCityListId });
+        setCityListId(currentCityListId);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
+  }, [label])
+
+
 
 
   useEffect(() => {
@@ -43,7 +67,7 @@ const NearbyCitiesList = ({ cityListId }) => {
 
 
   return (
-    <div>
+    <div className="">
       <h3 className="mb-2"><FontAwesomeIcon icon={faLocationDot} /> Nearby Weather</h3>
       <div className="flex flex-col gap-2">
         {

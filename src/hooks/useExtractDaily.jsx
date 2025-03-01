@@ -6,6 +6,9 @@ const DEFAULT_HEADERS = {
 
 export function useExtractDaily({ cityName, method = 'GET' }) {
 
+  // console.log(cityName);
+
+
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
