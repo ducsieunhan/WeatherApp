@@ -33,8 +33,8 @@ const IndicatorMain = ({ cityName }) => {
 
     isLoading ? <Loading /> : (
 
-      <div className="flex flex-col bg-white/[0.05] border border-[rgba(255,255,255,0.08)] py-2 px-1" >
-        <h3 className="cursor-pointer"><FontAwesomeIcon icon={faMapPin} /> Weather forecast at {cityName}   <FontAwesomeIcon className="pl-3" icon={faHome} /></h3>
+      <div className="flex flex-col bg-strong text-white border border-[rgba(255,255,255,0.08)] py-2 px-1" >
+        <h3 className="cursor-pointer text-[20px] md:text-[35px] "><FontAwesomeIcon icon={faMapPin} /> Weather forecast at {cityName}   </h3>
         <div className="flex p-4  gap-3">
           <img src={weatherIcon} className="w-14 md:w-[3vw]" />
           <p className="font-bold text-[15px] md:text-[1.7vw]">{currentCityPinned.main?.temp.toFixed(1) ?? "Loading..."}&deg;</p>
@@ -45,7 +45,7 @@ const IndicatorMain = ({ cityName }) => {
             <p>Feels like {currentCityPinned.main?.feels_like.toFixed(1) ?? "Loading..."}&deg;.</p>
           </div>
         </div>
-        <div className="grid grid-cols-3 md:flex justify-evenly text-[2vw] md:text-[20px] ">
+        <div className="grid grid-cols-3 md:flex justify-evenly text-[15px] md:text-[20px] ">
           <IndicatorType name={"Low/High"} indicator={currentCityPinned.main?.temp_min.toFixed(1) ?? "Loading..."} icon={faTemperature2} unit={'°'} />
           <IndicatorType name={"Humidity"} indicator={currentCityPinned.main?.humidity ?? "Loading..."} icon={faDroplet} unit={'%'} />
           <IndicatorType name={"Visibility"} indicator={currentCityPinned.visibility ?? "Loading..."} icon={faEye} unit={'km'} />

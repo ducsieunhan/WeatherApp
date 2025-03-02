@@ -67,7 +67,7 @@ const NearbyCitiesList = ({ label }) => {
 
 
   return (
-    <div className="">
+    <div className="text-white p-4 bg-light border rounded-md border-[rgba(255,255,255,0.08)] mb-2">
       <h3 className="mb-2"><FontAwesomeIcon icon={faLocationDot} /> Nearby Weather</h3>
       <div className="flex flex-col gap-2">
         {

@@ -4,7 +4,7 @@ import Header from "../components/HeadContain/Header"
 const RootLayout = () => {
   return (
     <div>
-      <Header />
+      <div className="w-full border-b border-slate-300"><Header /></div>
       <Outlet />
     </div>
   )

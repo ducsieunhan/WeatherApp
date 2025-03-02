@@ -10,6 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import DataLabels from "chartjs-plugin-datalabels";
+import { useEffect, useRef } from "react";
 
 ChartJS.register(
   CategoryScale,
@@ -23,6 +24,8 @@ ChartJS.register(
 );
 
 const LineChartData = ({ labelX = ["0", "0", "0", "0", "0", "0", "0"], dataLine1 = [0, 0, 0, 0, 0, 0, 0], dataLine2 = [0, 0, 0, 0, 0, 0, 0] }) => {
+
+  const chartRef = useRef(null);
 
   const data = {
     labels: labelX,
@@ -52,7 +55,10 @@ const LineChartData = ({ labelX = ["0", "0", "0", "0", "0", "0", "0"], dataLine1
       },
       title: {
         display: true,
-        text: "Average High & Low Temperature",
+        text: "Average Precipitation & Temperature",
+        font: {
+          size: window.innerWidth < 768 ? 14 : 16,
+        }
       },
       tooltip: {
         enabled: true,
@@ -64,6 +70,7 @@ const LineChartData = ({ labelX = ["0", "0", "0", "0", "0", "0", "0"], dataLine1
         color: '#000',
         align: 'top',
         font: {
+          size: window.innerWidth < 768 ? 10 : 12,
           weight: 'bold'
         },
         offset: 5,
@@ -79,14 +86,34 @@ const LineChartData = ({ labelX = ["0", "0", "0", "0", "0", "0", "0"], dataLine1
     },
     scales: {
       x: {
+        ticks: {
+          font: {
+            size: window.innerWidth < 768 ? 10 : 12,
+          }
+        }
       },
       y: {
-
         min: -20,
         max: 120,
+        ticks: {
+          font: {
+            size: window.innerWidth < 768 ? 10 : 12,
+          }
+        }
       },
     },
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (chartRef.current) {
+        chartRef.current.resize();
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className="w-full p-1 bg-white">

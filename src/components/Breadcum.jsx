@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Breadcrumb } from "flowbite-react";
-import { HiHome } from "react-icons/hi";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
 export function Breadcum() {
@@ -12,26 +13,26 @@ export function Breadcum() {
 
 
   return (
-    <Breadcrumb aria-label="Default breadcrumb example" className="max-w-screen-xl mx-auto p-4">
-      <Breadcrumb.Item href="/" icon={HiHome}>
-        Home
+    <Breadcrumb aria-label="Default breadcrumb example" className="max-w-screen-xl mx-auto p-4 border border-strong/50 my-3 bg-blue-400/30">
+      <Breadcrumb.Item href="/" className="">
+        <p className="text-gray-600"><FontAwesomeIcon icon={faHome} /> Home</p>
       </Breadcrumb.Item>
 
       {city && (
         <Breadcrumb.Item href={`/city?city=${city}&label=VN`} >
-          {city}
+          <p className="text-gray-600">{city}</p>
         </Breadcrumb.Item>
       )}
 
       {days && (
         <Breadcrumb.Item className="cursor-pointer" >
-          {days}
+          <p className="text-gray-600">{days}</p>
         </Breadcrumb.Item>
       )}
 
       {location.pathname.includes("/byHours") && (
         <Breadcrumb.Item className="cursor-pointer" >
-          Hourly Forecast
+          <p className="text-gray-600">Hourly Forecast</p>
         </Breadcrumb.Item>
       )}
     </Breadcrumb>

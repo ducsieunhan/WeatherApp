@@ -3,7 +3,7 @@ import ForecastCityByTime from "../components/ForecastCityByTime"
 
 const CityDetailTime = () => {
   return (
-    <div className="relative bg-blue-900 h-full w-full text-white">
+    <div className="relative bg-white  h-full w-full text-black">
       <Breadcum />
       <ForecastCityByTime />
     </div>

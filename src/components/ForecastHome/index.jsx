@@ -5,6 +5,8 @@ import { useEffect, useState } from "react"
 import CountrySelector from "./CountrySelector"
 import Loading from "../Loading"
 import CityWeatherPinned from "../CityWeatherPinned"
+import { useSpeCity } from "../../hooks/useSpeCity"
+import SunData from "../SunData"
 
 const ForecastOverall = () => {
 
@@ -16,6 +18,13 @@ const ForecastOverall = () => {
   const [cityListId, setCityListId] = useState([]);
   const [countryWeatherList, setCountryWeatherList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const { data: currentCityHome, isLoading: isLoading2 } = useSpeCity({
+    url: `/weather?q=Hanoi&units=metric&`
+  })
+
+  console.log({ currentCityHome });
+
 
   useEffect(() => {
     fetch(`http://api.geonames.org/searchJSON?country=${currentCountry.value}&maxRows=100&username=ducsieunhan&featureClass=P&style=SHORT`, {
@@ -57,21 +66,29 @@ const ForecastOverall = () => {
       })
   }, [cityListId]);
 
+  function formatTimeFromUnix(unixTimestamp) {
+    const date = new Date(unixTimestamp * 1000);
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${hours}:${minutes}`;
+  }
 
   if (isLoading) {
     return <Loading />
   }
 
+
   return (
-    <div className="flex flex-col md:flex-row relative max-w-screen-xl mx-auto  md:items-start h-full justify-center  gap-1 p-5 text-white z-0">
-      <div className="md:w-2/3 w-full h-full order-1 md:order-1 p-4">
+    <div className="flex flex-col md:flex-row relative max-w-screen-xl mx-auto  md:items-start h-full justify-center  gap-5 py-5 text-black z-0">
+      <div className="md:w-2/3 w-full h-full order-1 md:order-1 ">
         <h3 className="mb-3"><FontAwesomeIcon icon={faMagnifyingGlass} /> Weather Forecast of cities in <span onClick={() => setIsOpenCountryList(!isOpenCountryList)} className="underline decoration-dotted cursor-pointer">{currentCountry.label ? currentCountry.label : "Vietnam"}
         </span></h3>
         {isOpenCountryList && <CountrySelector setIsOpenCountryList={setIsOpenCountryList} currentCountry={currentCountry} setCurrentCountry={setCurrentCountry} />}
         <ForecastCityList countryWeatherList={countryWeatherList} />
       </div>
       <div className="md:w-1/3 w-full  md:flex-1 md:h-full order-2 md:top-0 p-4">
-        <CityWeatherPinned />
+        <CityWeatherPinned cityName={'Hanoi'} currentCity={currentCityHome} isLoading={isLoading2} />
+        <SunData sunrise={formatTimeFromUnix(currentCityHome?.sys?.sunrise)} sunset={formatTimeFromUnix(currentCityHome?.sys?.sunset)} />
       </div>
     </div>
   )

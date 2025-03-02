@@ -27,7 +27,7 @@ const ForecastForHour = ({ cityName }) => {
   const CustomArrow = ({ onClick, direction }) => (
     <button
       onClick={onClick}
-      className={`absolute top-1/2 transform -translate-y-1/2  p-2 text-white font-bold z-10 ${direction === "prev" ? "left-0" : "right-0"}`}
+      className={`absolute top-1/2 transform -translate-y-1/2  p-2 text-black font-bold z-10 ${direction === "prev" ? "left-0" : "right-0"}`}
     >
       {direction === "prev" ? <FontAwesomeIcon icon={faAngleLeft} className="text-[25px]" /> : <FontAwesomeIcon icon={faAngleRight} className="text-[25px]" />}
     </button>
@@ -82,11 +82,11 @@ const ForecastForHour = ({ cityName }) => {
 
 
   return (
-    <div className="bg-white/[0.1] border border-[rgba(255,255,255,0.08)] py-2 px-1 flex flex-col gap-4 ">
+    <div className=" border border-slate-300/80 py-2 px-1 flex flex-col gap-4 ">
       <div className="flex flex-col justify-between gap-2">
-        <p className="text-[18px]">
+        <p className="text-[15px] md:text-[25px]">
           Daily weather in {" "}
-          <span className="underline decoration-dotted cursor-pointer">
+          <span className="underline decoration-dotted cursor-pointer text-medium">
             {cityName}
           </span>{" "}
         </p>
@@ -100,7 +100,7 @@ const ForecastForHour = ({ cityName }) => {
         {
           dailyForecast.map((daily) => (
             <ForecastSpeCity isCity={false} key={daily.date_epoch} humidity={daily.day.avghumidity} name={dateExtract(daily.date)} tempMin={daily.day.maxtemp_c} tempMax={daily.day.mintemp_c} description={textExtract(daily.day.condition.text)} condition={daily.day.condition.text} label={''}
-              bg="bg-white/[0.1]" bgHover="hover:bg-white/[0.05]" border="border-[rgba(255,255,255,0.08)]"
+              bg="bg-white/[0.1]" bgHover="hover:bg-medium/90 transition duration-[0.2s] hover:text-white" border="border-medium"
             />
           ))
         }

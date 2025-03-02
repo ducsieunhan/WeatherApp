@@ -8,7 +8,7 @@ const PerTime = ({ humidity, pressure, temp_min, temp_max, time, uv, description
   const [isOpenExtra, setIsOpenExtra] = useState(false);
 
   return (
-    <div className="flex flex-col cursor-pointer border-b pb-2 border-slate-200">
+    <div className="flex flex-col cursor-pointer border-b pb-2 border-slate-300/80">
       <div className="grid grid-cols-5 gap-1 w-full items-center" onClick={() => setIsOpenExtra(!isOpenExtra)}>
         <p>{time}</p>
         <div className="justify-self-start"><span>{temp_min}°C</span>/<span className="font-bold text-[1.2vw] text-black">{temp_max}°C</span></div>

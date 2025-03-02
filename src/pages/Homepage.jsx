@@ -3,8 +3,8 @@ import ForecastOverall from "../components/ForecastHome"
 
 function Homepage() {
   return (
-    <div className="relative">
-      <BackgroundLayout />
+    <div className="relative bg-white text-black">
+      {/* <BackgroundLayout /> */}
       <ForecastOverall />
     </div>
   )

@@ -9,7 +9,7 @@ export default {
       colors: {
         strong: "#24498f",
         medium: "#006b3d",
-        light: "#6ac3e0"
+        light: "#3d9fba"
       }
     },
     fontSize: {
