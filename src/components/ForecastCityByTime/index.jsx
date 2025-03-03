@@ -7,6 +7,7 @@ import Loading from "../Loading";
 import { useSpeCity } from "../../hooks/useSpeCity";
 import { useExtractDaily } from "../../hooks/useExtractDaily";
 import ChartHourly from "../ForecastCity/LineChart/ChartHourly";
+import WeatherMap from "../WeatherMap";
 
 const ForecastCityByTime = () => {
 
@@ -64,6 +65,8 @@ const ForecastCityByTime = () => {
       <div className="md:w-1/3 w-full  md:flex-1 md:h-full order-2 md:top-0  ">
         <CityWeatherPinned cityName={cityName} currentCity={currentCity} isLoading={isLoading} />
         <SunData sunrise={formatTimeFromUnix(currentCity?.sys?.sunrise)} sunset={formatTimeFromUnix(currentCity?.sys?.sunset)} />
+        <WeatherMap />
+
       </div>
     </div>
   )

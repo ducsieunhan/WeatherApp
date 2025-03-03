@@ -9,6 +9,7 @@ import ChartHourly from "./LineChart/ChartHourly";
 import { useExtractDaily } from "../../hooks/useExtractDaily";
 import ChartDaily from "./LineChart/ChartDaily";
 import SunData from "../SunData";
+import WeatherMap from "../WeatherMap";
 
 const ForecastSpecificCity = () => {
 
@@ -63,9 +64,10 @@ const ForecastSpecificCity = () => {
         <ForecastForDays cityName={city} />
         <ChartDaily cityName={city} dataRain={dataRainDaily} dataTemp={dataTempDaily} dataTime={dataTimeDaily} />
       </div>
-      <div className="md:w-1/3 w-full  md:flex-1 md:h-full order-2 md:top-0 ">
+      <div className="md:w-1/3 w-full  md:flex-1 md:h-full order-2 md:top-0">
         <NearbyCitiesList label={label} />
         <SunData sunrise={dailyForecast[0].astro.sunrise} sunset={dailyForecast[0].astro.sunset} />
+        <WeatherMap />
       </div>
     </div>
   )

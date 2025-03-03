@@ -7,6 +7,7 @@ import Loading from "../Loading"
 import CityWeatherPinned from "../CityWeatherPinned"
 import { useSpeCity } from "../../hooks/useSpeCity"
 import SunData from "../SunData"
+import WeatherMap from "../WeatherMap"
 
 const ForecastOverall = () => {
 
@@ -14,7 +15,7 @@ const ForecastOverall = () => {
     value: 'VN',
     label: 'Viet Nam'
   });
-  const [isOpenCountryList, setIsOpenCountryList] = useState(false);
+  // const [isOpenCountryList, setIsOpenCountryList] = useState(false);
   const [cityListId, setCityListId] = useState([]);
   const [countryWeatherList, setCountryWeatherList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -79,17 +80,21 @@ const ForecastOverall = () => {
 
 
   return (
-    <div className="flex flex-col md:flex-row relative max-w-screen-xl mx-auto  md:items-start h-full justify-center  gap-5 py-5 text-black z-0">
-      <div className="md:w-2/3 w-full h-full order-1 md:order-1 ">
-        <h3 className="mb-3"><FontAwesomeIcon icon={faMagnifyingGlass} /> Weather Forecast of cities in <span onClick={() => setIsOpenCountryList(!isOpenCountryList)} className="underline decoration-dotted cursor-pointer">{currentCountry.label ? currentCountry.label : "Vietnam"}
-        </span></h3>
-        {isOpenCountryList && <CountrySelector setIsOpenCountryList={setIsOpenCountryList} currentCountry={currentCountry} setCurrentCountry={setCurrentCountry} />}
-        <ForecastCityList countryWeatherList={countryWeatherList} />
+    <div>
+      <div className="flex flex-col md:flex-row relative max-w-screen-xl mx-auto  md:items-start h-full justify-center  gap-5 py-5 text-black z-0">
+        <div className="md:w-2/3 w-full h-full order-1 md:order-1 ">
+          <h3 className="mb-3 md:text-[25px]"><FontAwesomeIcon icon={faMagnifyingGlass} /> Weather Forecast of cities in <span onClick={() => setIsOpenCountryList(!isOpenCountryList)} className="underline decoration-dotted cursor-pointer hover:text-medium">{currentCountry.label ? currentCountry.label : "Vietnam"}
+          </span></h3>
+          <CountrySelector currentCountry={currentCountry} setCurrentCountry={setCurrentCountry} />
+          <ForecastCityList countryWeatherList={countryWeatherList} />
+        </div>
+        <div className="md:w-1/3 w-full  md:flex-1 md:h-full order-2 md:top-0 p-4 flex flex-col gap-3">
+          <CityWeatherPinned cityName={'Hanoi'} currentCity={currentCityHome} isLoading={isLoading2} />
+          <SunData sunrise={formatTimeFromUnix(currentCityHome?.sys?.sunrise)} sunset={formatTimeFromUnix(currentCityHome?.sys?.sunset)} />
+        </div>
       </div>
-      <div className="md:w-1/3 w-full  md:flex-1 md:h-full order-2 md:top-0 p-4">
-        <CityWeatherPinned cityName={'Hanoi'} currentCity={currentCityHome} isLoading={isLoading2} />
-        <SunData sunrise={formatTimeFromUnix(currentCityHome?.sys?.sunrise)} sunset={formatTimeFromUnix(currentCityHome?.sys?.sunset)} />
-      </div>
+      <WeatherMap />
+
     </div>
   )
 }

@@ -25,7 +25,7 @@ const CityWeatherPinned = ({ currentCity, isLoading, cityName }) => {
     isLoading ? <Loading /> : (
 
 
-      <div className="bg-light text-white  h-full w-full p-2 text-sm md:text-base flex flex-col gap-2 md:gap-0 mb-3 rounded-md">
+      <div className="bg-light text-white  h-full w-full p-2 text-sm md:text-base flex flex-col gap-2 md:gap-0  rounded-md">
         <p className="font-bold"><FontAwesomeIcon icon={faMapPin} /> {cityName}</p>
         <p>Updated 25 minutes later</p>
         <div className="flex flex-row justify-start items-center ml-3 relative">
