@@ -1,18 +1,16 @@
 import React, { useEffect, useState, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faX } from '@fortawesome/free-solid-svg-icons';
 import Indicator from './Indicator';
 
 
-const WeatherMap = () => {
+const WeatherMap = ({ lat = "21.0245", lon = "105.84117" }) => {
   const [timestamps, setTimestamps] = useState([]);
   const [currentTimeIndex, setCurrentTimeIndex] = useState(0);
   const mapRef = useRef(null);
   const rainLayerRef = useRef(null);
 
-  const DEFAULT_COORDS = [10.762622, 106.660172];
+  const DEFAULT_COORDS = [lat, lon];
   const DEFAULT_ZOOM = 7;
 
   useEffect(() => {
@@ -61,7 +59,7 @@ const WeatherMap = () => {
   };
 
   return (
-    <div className='relative max-w-screen-xl m-auto text-black'>
+    <div className='relative max-w-screen-xl m-auto text-black '>
       <div id="map" className='w-[100%] h-[500px] z-0'></div>
 
       <div className='py-4 z-10 absolute w-full bottom-0 bg-white/40'>
@@ -71,7 +69,7 @@ const WeatherMap = () => {
           max={timestamps.length - 1}
           value={currentTimeIndex}
           onChange={(e) => handleTimeChange(parseInt(e.target.value))}
-          className='w-[100%] cursor-pointer'
+          className='w-[97%] cursor-pointer'
         />
         <p>
           Time: {timestamps[currentTimeIndex] ?

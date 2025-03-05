@@ -4,7 +4,6 @@ import { faMapPin } from "@fortawesome/free-solid-svg-icons"
 import TableIndicator from "./ForecastHome/TableIndicator"
 import { capitalizeWords } from "../libs/utils"
 import Loading from "./Loading"
-import { useSpeCity } from "../hooks/useSpeCity"
 import useWeatherConditionIcon from "../hooks/useWeatherConditionIcon"
 
 

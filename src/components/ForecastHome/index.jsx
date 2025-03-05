@@ -24,7 +24,7 @@ const ForecastOverall = () => {
     url: `/weather?q=Hanoi&units=metric&`
   })
 
-  console.log({ currentCityHome });
+  // console.log({ currentCityHome });
 
 
   useEffect(() => {
