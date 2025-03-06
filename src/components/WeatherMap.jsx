@@ -2,41 +2,56 @@ import React, { useEffect, useState, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import Indicator from './Indicator';
+import Loading from './Loading';
+import { useCoordinationCity } from '../hooks/useCoordinationCity';
 
 
-const WeatherMap = ({ lat = "21.0245", lon = "105.84117" }) => {
+const WeatherMap = ({ cityName }) => {
   const [timestamps, setTimestamps] = useState([]);
   const [currentTimeIndex, setCurrentTimeIndex] = useState(0);
   const mapRef = useRef(null);
   const rainLayerRef = useRef(null);
+  const { data: dataCoordination, isLoadingCoordination } = useCoordinationCity({ cityName: cityName });
 
-  const DEFAULT_COORDS = [lat, lon];
-  const DEFAULT_ZOOM = 7;
+  // console.log(dataCoordination?.[0]?.lat ? dataCoordination?.[0]?.lat : "21.0245");
+
+  const DEFAULT_COORDS = [dataCoordination?.[0]?.lat ? dataCoordination?.[0]?.lat : 21.0245, dataCoordination?.[0]?.lon ? dataCoordination?.[0]?.lon : 105.84117];
+  // console.log({ DEFAULT_COORDS });
+
+  const DEFAULT_ZOOM = 9;
 
   useEffect(() => {
-    mapRef.current = L.map('map').setView(DEFAULT_COORDS, DEFAULT_ZOOM);
+    if (!mapRef.current) {
+      mapRef.current = L.map('map').setView(DEFAULT_COORDS, DEFAULT_ZOOM);
 
-    // Thêm lớp bản đồ nền
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors'
-    }).addTo(mapRef.current);
+      // Thêm lớp bản đồ nền
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors',
+      }).addTo(mapRef.current);
 
-    // Fetch RainViewer timestamps
-    fetch('https://api.rainviewer.com/public/maps.json')
-      .then(response => response.json())
-      .then(data => {
-        setTimestamps(data);
-        updateRainLayer(data[0]);
-      });
+      // Fetch RainViewer timestamps
+      fetch('https://api.rainviewer.com/public/maps.json')
+        .then((response) => response.json())
+        .then((data) => {
+          setTimestamps(data);
+          updateRainLayer(data[0]);
+        });
+    }
 
     return () => {
       if (mapRef.current) {
         mapRef.current.remove();
+        mapRef.current = null;
       }
     };
   }, []);
 
-  // Cập nhật lớp mưa khi timestamp thay đổi
+  useEffect(() => {
+    if (mapRef.current) {
+      mapRef.current.setView(DEFAULT_COORDS, DEFAULT_ZOOM);
+    }
+  }, [DEFAULT_COORDS]);
+
   const updateRainLayer = (timestamp) => {
     if (rainLayerRef.current) {
       mapRef.current.removeLayer(rainLayerRef.current);
@@ -57,6 +72,9 @@ const WeatherMap = ({ lat = "21.0245", lon = "105.84117" }) => {
     setCurrentTimeIndex(index);
     updateRainLayer(timestamps[index]);
   };
+  if (isLoadingCoordination) {
+    return <Loading />
+  }
 
   return (
     <div className='relative max-w-screen-xl m-auto text-black '>

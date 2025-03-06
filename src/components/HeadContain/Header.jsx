@@ -1,10 +1,10 @@
-import { faBars, faCertificate, faCloudRain, faCloudSun, faLocationDot, faSearch, faSortDown } from "@fortawesome/free-solid-svg-icons"
+import { faBars, faCertificate, faCloudRain, faLocationDot, faSearch } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Location from "./Location"
 import { useEffect, useState } from "react"
 import { useSpeCity } from "../../hooks/useSpeCity"
 import Loading from "../Loading"
-import { faCloud } from "@fortawesome/free-solid-svg-icons/faCloud"
+import { Link } from "react-router-dom"
 
 const Header = () => {
 
@@ -62,15 +62,15 @@ const Header = () => {
   return (
     <>
       <header className="flex w-full max-w-screen-xl mx-auto h-14 lg:h-20 items-center 
-        gap-5 md:gap-10 justify-between  text-10 sm:text-[1.3vw]">
-        <div className="flex justify-center items-center gap-2 cursor-pointer">
+        gap-5 md:gap-5 justify-around  text-10 sm:text-[1.3vw]">
+        <Link to={'/'} className="flex justify-center items-center gap-2 cursor-pointer">
           <img className="w-6 sm:w-8" src="/cloudy.png" />
           <div className="font-bold text-[15px] md:text-[1.5vw]"><span className="text-orange-500">Today</span>Weather</div>
-        </div>
-        <div className="relative flex gap-2 h-[50%] md:h-[65%] w-[200px] lg:w-[500px]">
+        </Link>
+        <div className="relative flex gap-2 h-[50%] md:h-[65%] w-[200px] lg:w-[700px] ">
           <FontAwesomeIcon icon={faSearch} className="mr-[1vw] absolute left-2 top-1/2 -translate-y-1/2 text-blue-400" />
-          <input placeholder="Find your city" type="text" className="text-[15px] md:text-[25px] h-full w-[80%] border border-slate-400 pl-5 lg:pl-10 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-400" />
-          <p className="flex items-center cursor-pointer h-full border border-slate-400 px-4 hover:bg-blue-400 hover:text-white transition duration-200">
+          <input placeholder="Address, City, ..." type="text" className="text-[15px] md:text-[20px] h-full w-[80%] border border-slate-400 pl-5 lg:pl-10 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-400 rounded-md" />
+          <p className="flex items-center cursor-pointer h-full border border-slate-400 px-4 hover:bg-blue-400 hover:text-white transition duration-200 rounded-md">
             Search
           </p>
         </div>
@@ -83,19 +83,10 @@ const Header = () => {
             </>
             )}
           </li>
-          {/* <li className="cursor-pointer flex gap-1 items-center justify-center border-[2px] border-transparent hover:border-[2px] hover:border-b-blue-500"
-            onClick={() => setIsOpen(!isOpen)}>
-            <span>Location</span>
-            <FontAwesomeIcon icon={faSortDown} />
-          </li> */}
-          {/* <li className="cursor-pointer flex gap-1 items-center justify-center border-[2px] border-transparent hover:border-[2px] hover:border-b-blue-500">
-            <FontAwesomeIcon icon={faCloudRain} className="text-blue-400" />
-            <a>Rainfall</a>
-          </li> */}
-          {/* <li className="cursor-pointer flex gap-1 items-center justify-center border-[2px] border-transparent hover:border-[2px] hover:border-b-blue-500">
+          <li className="cursor-pointer flex gap-1 items-center justify-center border-[2px] border-transparent hover:border-[2px] hover:border-b-blue-500">
+            <a className="font-bold">Air Quality</a>
             <FontAwesomeIcon icon={faCertificate} className="text-red-400" />
-            <a>Air Quality</a>
-          </li> */}
+          </li>
         </ul>
         {/* Menu Icon for smaller screens */}
         <div className="sm:hidden relative">
@@ -110,24 +101,18 @@ const Header = () => {
 
       {isMenuOpen && (
         <div className=" sm:hidden fixed top-14 left-0 w-full bg-white border-b border-slate-300 shadow-lg z-10">
-          <ul className="py-2 flex flex-col justify-center">
-            <li
-              className="cursor-pointer text-center px-4 py-2 hover:bg-blue-400 hover:text-white"
-              onClick={() => {
-                setIsOpen(!isOpen);
-                setIsMenuOpen(false);
-              }}
+          <ul className="py-2 flex flex-col justify-center gap-3">
+            <li className="cursor-pointer py-3 hover:bg-black/20 flex gap-1 items-center justify-center  "
             >
-              <FontAwesomeIcon icon={faLocationDot} className="text-red-500 mr-1" />
-              Location
+              {userLocation && (<>
+                <span className="font-bold">{currentCity?.name} {currentCity?.main?.temp}°c</span>
+                <img className="w-6 sm:w-8 " src="/clear-sky.png" />
+              </>
+              )}
             </li>
-            <li className="cursor-pointer text-center px-4 py-2 hover:bg-blue-400 hover:text-white">
-              <FontAwesomeIcon icon={faCloudRain} className="text-blue-400 mr-2" />
-              Rainfall
-            </li>
-            <li className="cursor-pointer text-center px-4 py-2 hover:bg-blue-400 hover:text-white">
-              <FontAwesomeIcon icon={faCertificate} className="text-red-400 mr-2" />
-              Air Quality
+            <li className="cursor-pointer py-3 hover:bg-black/20 flex gap-1 items-center justify-center ">
+              <a className="font-bold">Air Quality</a>
+              <FontAwesomeIcon icon={faCertificate} className="text-red-400" />
             </li>
           </ul>
         </div>

@@ -30,7 +30,7 @@ const ForecastSpecificCity = () => {
 
   const dailyForecast = weatherDaily.forecast?.forecastday || [];
 
-  console.log({ dailyForecast });
+  // console.log({ dailyForecast });
 
   // for chart
   const dataHourly = (dailyForecast[0].hour).slice(0, 11);
@@ -67,7 +67,7 @@ const ForecastSpecificCity = () => {
       <div className="md:w-1/3 w-full  md:flex-1 md:h-full order-2 md:top-0">
         <NearbyCitiesList label={label} />
         <SunData sunrise={dailyForecast[0].astro.sunrise} sunset={dailyForecast[0].astro.sunset} />
-        <WeatherMap />
+        <WeatherMap cityName={city} />
       </div>
     </div>
   )
