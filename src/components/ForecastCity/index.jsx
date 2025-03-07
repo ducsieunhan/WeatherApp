@@ -17,7 +17,7 @@ const ForecastSpecificCity = () => {
   const city = searchParams.get('city');
   const label = searchParams.get('label');
 
-  // console.log(city);
+  console.log(find);
   const { data: weatherDaily, isLoading } = useExtractDaily({ cityName: city });
 
   if (isLoading) {
@@ -27,6 +27,7 @@ const ForecastSpecificCity = () => {
   if (!weatherDaily) {
     return <div>No data available</div>;
   }
+
 
   const dailyForecast = weatherDaily.forecast?.forecastday || [];
 

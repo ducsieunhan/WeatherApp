@@ -1,6 +1,7 @@
 import { faBars, faCertificate, faCloudRain, faLocationDot, faSearch } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Location from "./Location"
+import SearchCity from "./SearchCity"
 import { useEffect, useState } from "react"
 import { useSpeCity } from "../../hooks/useSpeCity"
 import Loading from "../Loading"
@@ -63,17 +64,11 @@ const Header = () => {
     <>
       <header className="flex w-full max-w-screen-xl mx-auto h-14 lg:h-20 items-center 
         gap-5 md:gap-5 justify-around  text-10 sm:text-[1.3vw]">
-        <Link to={'/'} className="flex justify-center items-center gap-2 cursor-pointer">
+        <Link to={'/'} className="flex justify-center items-center gap-2 cursor-pointer ">
           <img className="w-6 sm:w-8" src="/cloudy.png" />
           <div className="font-bold text-[15px] md:text-[1.5vw]"><span className="text-orange-500">Today</span>Weather</div>
         </Link>
-        <div className="relative flex gap-2 h-[50%] md:h-[65%] w-[200px] lg:w-[700px] ">
-          <FontAwesomeIcon icon={faSearch} className="mr-[1vw] absolute left-2 top-1/2 -translate-y-1/2 text-blue-400" />
-          <input placeholder="Address, City, ..." type="text" className="text-[15px] md:text-[20px] h-full w-[80%] border border-slate-400 pl-5 lg:pl-10 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-400 rounded-md" />
-          <p className="flex items-center cursor-pointer h-full border border-slate-400 px-4 hover:bg-blue-400 hover:text-white transition duration-200 rounded-md">
-            Search
-          </p>
-        </div>
+        <SearchCity />
         <ul className="hidden sm:flex gap-5 h-3/4">
           <li className="cursor-pointer flex gap-1 items-center justify-center border-[2px] border-transparent hover:border-[2px] hover:border-b-blue-500"
           >
