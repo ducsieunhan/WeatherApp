@@ -10,7 +10,7 @@ function CountrySelector({ currentCountry, setCurrentCountry }) {
     // setIsOpenCountryList(false);
   }
 
-  return <Select className='text-black' options={options} value={currentCountry} onChange={changeHandler} />
+  return <Select className='text-black mb-2' options={options} value={currentCountry} onChange={changeHandler} />
 }
 
 export default CountrySelector

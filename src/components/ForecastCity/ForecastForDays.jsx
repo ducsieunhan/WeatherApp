@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Slider from "react-slick";

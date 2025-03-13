@@ -11,6 +11,7 @@ const WeatherMap = ({ cityName }) => {
   const [currentTimeIndex, setCurrentTimeIndex] = useState(0);
   const mapRef = useRef(null);
   const rainLayerRef = useRef(null);
+  const markerRef = useRef(null);
   const { data: dataCoordination, isLoadingCoordination } = useCoordinationCity({ cityName: cityName });
 
   // console.log(dataCoordination?.[0]?.lat ? dataCoordination?.[0]?.lat : "21.0245");
@@ -19,7 +20,16 @@ const WeatherMap = ({ cityName }) => {
   // console.log({ DEFAULT_COORDS });
 
   const DEFAULT_ZOOM = 9;
+  const redIcon = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+    shadowSize: [41, 41]
+  });
 
+  // create the map 
   useEffect(() => {
     if (!mapRef.current) {
       mapRef.current = L.map('map').setView(DEFAULT_COORDS, DEFAULT_ZOOM);
@@ -28,6 +38,7 @@ const WeatherMap = ({ cityName }) => {
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors',
       }).addTo(mapRef.current);
+
 
       // Fetch RainViewer timestamps
       fetch('https://api.rainviewer.com/public/maps.json')
@@ -45,6 +56,19 @@ const WeatherMap = ({ cityName }) => {
       }
     };
   }, []);
+
+  // update the marker location 
+  useEffect(() => {
+    if (mapRef.current) {
+      if (markerRef.current) {
+        mapRef.current.removeLayer(markerRef.current);
+      }
+
+      markerRef.current = L.marker(DEFAULT_COORDS, { icon: redIcon }).addTo(mapRef.current);
+
+      mapRef.current.setView(DEFAULT_COORDS, DEFAULT_ZOOM);
+    }
+  }, [DEFAULT_COORDS]);
 
   useEffect(() => {
     if (mapRef.current) {

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ForecastCityList from "./ForecastCityList"
@@ -8,6 +9,7 @@ import CityWeatherPinned from "../CityWeatherPinned"
 import { useSpeCity } from "../../hooks/useSpeCity"
 import SunData from "../SunData"
 import WeatherMap from "../WeatherMap"
+import CitiesList from "./CitiesList"
 
 const ForecastOverall = () => {
 
@@ -17,6 +19,7 @@ const ForecastOverall = () => {
   });
   // const [isOpenCountryList, setIsOpenCountryList] = useState(false);
   const [cityListId, setCityListId] = useState([]);
+  const [cityListName, setCityListName] = useState([]);
   const [countryWeatherList, setCountryWeatherList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -27,6 +30,7 @@ const ForecastOverall = () => {
   // console.log({ currentCityHome });
 
 
+  // get cities list of a country selector 
   useEffect(() => {
     fetch(`http://api.geonames.org/searchJSON?country=${currentCountry.value}&maxRows=100&username=ducsieunhan&featureClass=P&style=SHORT`, {
       method: 'GET',
@@ -37,18 +41,29 @@ const ForecastOverall = () => {
       .then(async (res) => {
         const data = await res.json();
         // console.log({ data });
-        const currentCityList = (data.geonames || []).slice(0, 12);
+        // const currentCityList = (data.geonames || []).slice(0, 12);
+        const currentCityList = (data.geonames || []);
+        // console.log({ currentCityList });
         const currentCityListId = currentCityList.map(city => city.geonameId);
         // console.log({ currentCityListId });
         setCityListId(currentCityListId);
+        const currentCityListName = currentCityList.map(({ geonameId, name }) =>
+        (
+          {
+            geonameId, name
+          }
+        ));
+        console.log({ currentCityListName });
+        setCityListName(currentCityListName);
+
       })
   }, [currentCountry])
 
   useEffect(() => {
     if (cityListId.length === 0) return;
     setIsLoading(true);
-
-    fetch(`https://api.openweathermap.org/data/2.5/group?id=${cityListId.join(",")}&units=metric&appid=848cd758e03e69227688affa4a80e700`, {
+    const limitedCityListId = cityListId.slice(0, 12);
+    fetch(`https://api.openweathermap.org/data/2.5/group?id=${limitedCityListId.join(",")}&units=metric&appid=848cd758e03e69227688affa4a80e700`, {
       method: 'GET',
       headers: {
         accept: 'application/json',
@@ -77,8 +92,6 @@ const ForecastOverall = () => {
   if (isLoading) {
     return <Loading />
   }
-
-
   return (
     <div>
       <div className="flex flex-col md:flex-row relative max-w-screen-xl mx-auto  md:items-start h-full justify-center  gap-5 py-5 text-black z-0">
@@ -94,7 +107,7 @@ const ForecastOverall = () => {
         </div>
       </div>
       <WeatherMap />
-
+      <CitiesList countryName={currentCountry.label} cityListName={cityListName} />
     </div>
   )
 }

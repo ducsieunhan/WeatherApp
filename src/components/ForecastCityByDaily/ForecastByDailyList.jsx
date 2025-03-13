@@ -18,7 +18,7 @@ const ForecastByDailyList = ({ cityName, dayCount }) => {
   const dailyForecast = (weatherDaily.forecast?.forecastday).slice(0, dayCount) || [];
   // const currentForecast = weatherDaily.current || {};
 
-  console.log({ dailyForecast });
+  // console.log({ dailyForecast });
 
   const dateExtract = (date) => {
     return date.split('-').join('/');

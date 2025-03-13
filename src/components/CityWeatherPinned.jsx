@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import CityForecastComingDays from "./ForecastHome/CityForecastComingDays"
 import { faMapPin } from "@fortawesome/free-solid-svg-icons"
@@ -45,7 +46,7 @@ const CityWeatherPinned = ({ currentCity, isLoading, cityName }) => {
         <h3 className="text-[15px] md:text-[1.3vw] mb-1">Forecast for coming days</h3>
         <div className="grid justify-center items-center grid-cols-4 gap-3 mx-auto">
           {daysComing.map((day) => (
-            <CityForecastComingDays key={day} day={day} />
+            <CityForecastComingDays key={day} day={day} cityName={cityName} />
           ))}
 
         </div>
