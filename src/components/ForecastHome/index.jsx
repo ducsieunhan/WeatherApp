@@ -102,7 +102,7 @@ const ForecastOverall = () => {
           <ForecastCityList countryWeatherList={countryWeatherList} />
         </div>
         <div className="md:w-1/3 w-full  md:flex-1 md:h-full order-2 md:top-0 p-4 flex flex-col gap-3">
-          <CityWeatherPinned cityName={'Hanoi'} currentCity={currentCityHome} isLoading={isLoading2} />
+          <CityWeatherPinned cityName={'Hanoi'} currentCity={currentCityHome} isLoading={isLoading2} daily={false} />
           <SunData sunrise={formatTimeFromUnix(currentCityHome?.sys?.sunrise)} sunset={formatTimeFromUnix(currentCityHome?.sys?.sunset)} />
         </div>
       </div>

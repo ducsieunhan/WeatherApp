@@ -7,6 +7,7 @@ import RootLayout from './pages/RootLayout.jsx'
 import CityDetail from './pages/CityDetail.jsx'
 import CityDetailTime from './pages/CityDetailTime.jsx'
 import CityDetailDays from './pages/CityDetailDays.jsx'
+import WeatherMap from './components/WeatherMap.jsx'
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: '/:cityName/:days',
         element: <CityDetailDays />
+      },
+      {
+        path: '/WeatherMap',
+        element: <WeatherMap />
       }
     ]
   }

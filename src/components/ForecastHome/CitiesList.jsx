@@ -13,8 +13,8 @@ const CitiesList = ({ countryName, cityListName }) => {
   console.log(sortCountryName);
 
   return (
-    <div className="max-w-screen-xl mx-auto border border-slate-300 md:text-[18px] text-[13px] my-4">
-      <h3 className="bg-slate-300/50 p-3 border-b border-slate-300">Cities weather forecast in {countryName}</h3>
+    <div className="max-w-screen-xl mx-auto border border-slate-300 md:text-[18px] text-[13px] my-4 rounded-md">
+      <h3 className="bg-slate-300/15 p-3 border-b border-slate-300">Cities weather forecast in {countryName}</h3>
       <div className="grid grid-cols-3 justify-start py-4 px-10 gap-3">
         {
           sortCountryName?.map(city => (

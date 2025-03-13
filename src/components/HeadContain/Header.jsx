@@ -1,4 +1,4 @@
-import { faBars, faCertificate, faCloudRain, faLocationDot, faSearch } from "@fortawesome/free-solid-svg-icons"
+import { faBars, faCertificate, faCloudRain, faLocationDot, faMapLocation, faSearch } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Location from "./Location"
 import SearchCity from "./SearchCity"
@@ -70,7 +70,7 @@ const Header = () => {
         </Link>
         <SearchCity />
         <ul className="hidden sm:flex gap-5 h-3/4">
-          <li className="cursor-pointer flex gap-1 items-center justify-center border-[2px] border-transparent hover:border-[2px] hover:border-b-blue-500"
+          <li className="cursor-default flex gap-1 items-center justify-center border-[2px] border-transparent hover:border-[2px] hover:border-b-blue-500"
           >
             {userLocation && (<>
               <span className="font-bold">{currentCity?.name} {currentCity?.main?.temp}°c</span>
@@ -78,10 +78,10 @@ const Header = () => {
             </>
             )}
           </li>
-          <li className="cursor-pointer flex gap-1 items-center justify-center border-[2px] border-transparent hover:border-[2px] hover:border-b-blue-500">
-            <a className="font-bold">Air Quality</a>
-            <FontAwesomeIcon icon={faCertificate} className="text-red-400" />
-          </li>
+          <Link to={'/WeatherMap'} className="cursor-pointer flex gap-1 items-center justify-center border-[2px] border-transparent hover:border-[2px] hover:border-b-blue-500">
+            <a className="font-bold">Map</a>
+            <img className="w-4 sm:w-6" src="/map.png" />
+          </Link>
         </ul>
         {/* Menu Icon for smaller screens */}
         <div className="sm:hidden relative">
@@ -97,7 +97,7 @@ const Header = () => {
       {isMenuOpen && (
         <div className=" sm:hidden fixed top-14 left-0 w-full bg-white border-b border-slate-300 shadow-lg z-10">
           <ul className="py-2 flex flex-col justify-center gap-3">
-            <li className="cursor-pointer py-3 hover:bg-black/20 flex gap-1 items-center justify-center  "
+            <li className=" py-3 hover:bg-black/20 flex gap-1 items-center justify-center  "
             >
               {userLocation && (<>
                 <span className="font-bold">{currentCity?.name} {currentCity?.main?.temp}°c</span>
@@ -106,8 +106,8 @@ const Header = () => {
               )}
             </li>
             <li className="cursor-pointer py-3 hover:bg-black/20 flex gap-1 items-center justify-center ">
-              <a className="font-bold">Air Quality</a>
-              <FontAwesomeIcon icon={faCertificate} className="text-red-400" />
+              <a className="font-bold">Map</a>
+              <img className="w-4 sm:w-6" src="/map.png" />
             </li>
           </ul>
         </div>

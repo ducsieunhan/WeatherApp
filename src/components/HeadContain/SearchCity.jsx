@@ -41,9 +41,11 @@ const SearchCity = () => {
     }
   };
 
-  if (find) {
-    toast.success('City found!');
-  }
+  useEffect(() => {
+    if (find) {
+      toast.success('City found!');
+    }
+  }, [find])
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
