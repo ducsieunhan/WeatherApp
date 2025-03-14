@@ -8,6 +8,7 @@ export function Breadcum() {
   const [searchParams] = useSearchParams();
   const { cityName } = useParams();
   const { days } = useParams();
+  const { WeatherMap } = useParams();
   const location = useLocation();
   let city = searchParams.get('city') || cityName;
 
@@ -21,6 +22,12 @@ export function Breadcum() {
       {city && (
         <Breadcrumb.Item href={`/city?city=${city}&label=VN`} >
           <p className="text-gray-600">{city}</p>
+        </Breadcrumb.Item>
+      )}
+
+      {location.pathname.includes("/WeatherMap") && (
+        <Breadcrumb.Item href={`/WeatherMap`} >
+          <p className="text-gray-600">Weather Map</p>
         </Breadcrumb.Item>
       )}
 

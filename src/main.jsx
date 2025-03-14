@@ -7,7 +7,7 @@ import RootLayout from './pages/RootLayout.jsx'
 import CityDetail from './pages/CityDetail.jsx'
 import CityDetailTime from './pages/CityDetailTime.jsx'
 import CityDetailDays from './pages/CityDetailDays.jsx'
-import WeatherMap from './components/WeatherMap.jsx'
+import WeatherMapContain from './pages/WeatherMapContain.jsx'
 
 const router = createBrowserRouter([
   {
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/WeatherMap',
-        element: <WeatherMap />
+        element: <WeatherMapContain />
       }
     ]
   }

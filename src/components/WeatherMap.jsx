@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import Indicator from './Indicator';
+import Indicator from './MapContain/Indicator';
 import Loading from './Loading';
 import { useCoordinationCity } from '../hooks/useCoordinationCity';
+import { useLocation } from 'react-router-dom';
 
 
 const WeatherMap = ({ cityName }) => {
@@ -12,6 +13,7 @@ const WeatherMap = ({ cityName }) => {
   const mapRef = useRef(null);
   const rainLayerRef = useRef(null);
   const markerRef = useRef(null);
+  const location = useLocation();
   const { data: dataCoordination, isLoadingCoordination } = useCoordinationCity({ cityName: cityName });
 
   // console.log(dataCoordination?.[0]?.lat ? dataCoordination?.[0]?.lat : "21.0245");
@@ -19,7 +21,7 @@ const WeatherMap = ({ cityName }) => {
   const DEFAULT_COORDS = [dataCoordination?.[0]?.lat ? dataCoordination?.[0]?.lat : 21.0245, dataCoordination?.[0]?.lon ? dataCoordination?.[0]?.lon : 105.84117];
   // console.log({ DEFAULT_COORDS });
 
-  const DEFAULT_ZOOM = 9;
+  const DEFAULT_ZOOM = location.pathname.includes("/WeatherMap") ? 5 : 9;
   const redIcon = new L.Icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
     iconSize: [25, 41],
