@@ -42,8 +42,8 @@ const CityWeatherPinned = ({ currentCity, isLoading, cityName, daily = true }) =
 
         {daily && (<>
 
-          <h3 className="text-[15px] md:text-[1.3vw] mb-1">Forecast for coming days</h3>
-          <div className="grid justify-center items-center grid-cols-4 gap-3 mx-auto">
+          <h3 className="text-[15px] my-2 lg:text-[1.3vw] mb-1">Forecast for coming days</h3>
+          <div className="grid justify-center items-center grid-cols-4 md:grid-cols-3 lg:grid-cols-4 gap-3 mx-auto">
             {daysComing.map((day) => (
               <CityForecastComingDays key={day} day={day} cityName={cityName} />
             ))}

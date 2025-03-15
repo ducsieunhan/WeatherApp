@@ -8,8 +8,6 @@ import Loading from "../Loading"
 import { Link } from "react-router-dom"
 
 const Header = () => {
-
-  const [isOpen, setIsOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userLocation, setUserLocation] = useState({
     latitude: 21.0245, longitude: 105.8412
@@ -63,7 +61,7 @@ const Header = () => {
   return (
     <>
       <header className="flex w-full max-w-screen-xl mx-auto h-14 lg:h-20 items-center 
-        gap-5 md:gap-5 justify-around  text-10 sm:text-[1.3vw]">
+        gap-5 md:gap-5 justify-around  text-[15px] lg:text-[25px]">
         <Link to={'/'} className="flex justify-center items-center gap-2 cursor-pointer ">
           <img className="w-6 sm:w-8" src="/cloudy.png" />
           <div className="font-bold text-[15px] md:text-[1.5vw]"><span className="text-orange-500">Today</span>Weather</div>
@@ -73,13 +71,13 @@ const Header = () => {
           <li className="cursor-default flex gap-1 items-center justify-center border-[2px] border-transparent hover:border-[2px] hover:border-b-blue-500"
           >
             {userLocation && (<>
-              <span className="font-bold">{currentCity?.name} {currentCity?.main?.temp}°c</span>
+              <span className="font-bold">{currentCity?.name} {currentCity?.main?.temp.toFixed(1)}°c</span>
               <img className="w-6 sm:w-8 " src="/clear-sky.png" />
             </>
             )}
           </li>
           <Link to={'/WeatherMap'} className="cursor-pointer flex gap-1 items-center justify-center border-[2px] border-transparent hover:border-[2px] hover:border-b-blue-500">
-            <a className="font-bold">Map</a>
+            <span className="font-bold">Map</span>
             <img className="w-4 sm:w-6" src="/map.png" />
           </Link>
         </ul>
@@ -95,18 +93,18 @@ const Header = () => {
 
 
       {isMenuOpen && (
-        <div className=" sm:hidden fixed top-14 left-0 w-full bg-white border-b border-slate-300 shadow-lg z-10">
+        <div className=" sm:hidden fixed top-14 left-0 w-full bg-white z-50 border-b border-slate-300 shadow-lg z-10">
           <ul className="py-2 flex flex-col justify-center gap-3">
             <li className=" py-3 hover:bg-black/20 flex gap-1 items-center justify-center  "
             >
               {userLocation && (<>
-                <span className="font-bold">{currentCity?.name} {currentCity?.main?.temp}°c</span>
+                <span className="font-bold">{currentCity?.name} {currentCity?.main?.temp.toFixed(1)}°c</span>
                 <img className="w-6 sm:w-8 " src="/clear-sky.png" />
               </>
               )}
             </li>
             <li className="cursor-pointer py-3 hover:bg-black/20 flex gap-1 items-center justify-center ">
-              <a className="font-bold">Map</a>
+              <span className="font-bold">Map</span>
               <img className="w-4 sm:w-6" src="/map.png" />
             </li>
           </ul>
@@ -114,7 +112,7 @@ const Header = () => {
       )}
 
       {/* Location Dropdown */}
-      {isOpen && <Location />}
+      {/* {isOpen && <Location />} */}
     </>
 
   );

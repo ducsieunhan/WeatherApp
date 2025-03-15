@@ -16,7 +16,7 @@ const DailyCard = ({ humidity, name, tempMin, tempMax, description, condition, p
         <div>
           <div className="flex items-center gap-2" >
             <img src={weatherIcon} className="w-[50px] md:w-[70px]"></img>
-            <p className="text-[4vw]">20°</p>
+            <p className="text-[30px] md:text-[4vw]">20°</p>
             <div className="flex flex-col ml-3">
               <p className="ld">{description}</p>
               <p className="">Feels like {tempMax}</p>

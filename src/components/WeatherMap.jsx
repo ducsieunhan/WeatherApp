@@ -1,15 +1,19 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import 'leaflet.fullscreen';
 import Indicator from './MapContain/Indicator';
 import Loading from './Loading';
 import { useCoordinationCity } from '../hooks/useCoordinationCity';
 import { useLocation } from 'react-router-dom';
+import OpenFullSize from './MapContain/openFullSize';
 
 
 const WeatherMap = ({ cityName }) => {
   const [timestamps, setTimestamps] = useState([]);
   const [currentTimeIndex, setCurrentTimeIndex] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
   const mapRef = useRef(null);
   const rainLayerRef = useRef(null);
   const markerRef = useRef(null);
@@ -79,7 +83,9 @@ const WeatherMap = ({ cityName }) => {
   }, [DEFAULT_COORDS]);
 
   const updateRainLayer = (timestamp) => {
-    if (rainLayerRef.current) {
+    if (!mapRef.current) return;
+
+    if (rainLayerRef.current && mapRef.current.hasLayer(rainLayerRef.current)) {
       mapRef.current.removeLayer(rainLayerRef.current);
     }
 
@@ -122,7 +128,7 @@ const WeatherMap = ({ cityName }) => {
         </p>
       </div>
       <Indicator />
-
+      {/* <OpenFullSize isOpen={isOpen} setIsOpen={setIsOpen} /> */}
 
     </div>
   );

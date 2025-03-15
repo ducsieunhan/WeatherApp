@@ -9,18 +9,20 @@ const PerTime = ({ humidity, pressure, temp_min, temp_max, time, uv, description
 
   return (
     <div className="flex flex-col cursor-pointer border-b pb-2 border-slate-300/80">
-      <div className="grid grid-cols-5 gap-1 w-full items-center" onClick={() => setIsOpenExtra(!isOpenExtra)}>
-        <p>{time}</p>
-        <div className="justify-self-start"><span>{temp_min}°C</span>/<span className="font-bold text-[1.2vw] text-black">{temp_max}°C</span></div>
-        <div className="flex items-center gap-2 justify-self-center">
-          <img src={cloud} className="w-14 md:w-[3vw]" />
+      <div className="grid grid-cols-4 md:grid-cols-11 gap-1 w-full items-center" onClick={() => setIsOpenExtra(!isOpenExtra)}>
+        <p className="md:col-span-2">{time}</p>
+        <div className="justify-self-start md:col-span-2"><span className="hidden md:inline-block text-[20px]">{temp_min}°C /</span><span className="font-bold text-[23px] text-black">{temp_max}°C</span></div>
+        <div className="flex items-center gap-2 justify-self-center md:col-span-2">
+          <img src={cloud} className="w-[40px] md:w-[3vw]" />
           <p className="max-w-[50px] ">{description}</p>
         </div>
-        <div className="flex gap-2 justify-self-end ">
+        <div className=" gap-2 justify-self-end hidden md:flex md:col-span-2">
           <p><FontAwesomeIcon icon={faDroplet} />{humidity}%</p>
-          <p><FontAwesomeIcon icon={faWind} />{windSpeed} km/h</p>
         </div>
-        <FontAwesomeIcon icon={faAngleDown} className="justify-self-end" />
+        <div className=" gap-2 justify-self-end hidden md:flex md:col-span-2">
+          <p className=""><FontAwesomeIcon icon={faWind} />{windSpeed} km/h</p>
+        </div>
+        <FontAwesomeIcon icon={faAngleDown} className="justify-self-end col-span-1" />
       </div>
 
       {isOpenExtra && <div className="flex flex-row justify-between pt-3 transform">

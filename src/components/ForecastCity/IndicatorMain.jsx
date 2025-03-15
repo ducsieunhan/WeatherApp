@@ -1,4 +1,5 @@
-import { faCertificate, faDroplet, faHome, faMapPin, faWind } from "@fortawesome/free-solid-svg-icons"
+/* eslint-disable react/prop-types */
+import { faCertificate, faDroplet, faMapPin, faWind } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import IndicatorType from "./IndicatorType"
 import { faTemperature2 } from "@fortawesome/free-solid-svg-icons/faTemperature2"
@@ -37,7 +38,7 @@ const IndicatorMain = ({ cityName }) => {
         <h3 className="cursor-pointer text-[20px] md:text-[35px] "><FontAwesomeIcon icon={faMapPin} /> Weather forecast at {cityName}   </h3>
         <div className="flex p-4  gap-3">
           <img src={weatherIcon} className="w-14 md:w-[3vw]" />
-          <p className="font-bold text-[15px] md:text-[1.7vw]">{currentCityPinned.main?.temp.toFixed(1) ?? "Loading..."}&deg;</p>
+          <p className="font-bold text-[25px] md:text-[1.7vw]">{currentCityPinned.main?.temp.toFixed(1) ?? "Loading..."}&deg;</p>
           <div className="text-[17px]">
             <p> {currentCityPinned.weather?.[0]?.description
               ? capitalizeWords(currentCityPinned.weather[0].description)

@@ -1,8 +1,15 @@
-const openFullSize = () => {
-  return (
+import { useState } from 'react'
+import zoomin from '/public/icons/zoomin.png'
+import zoomout from '/public/icons/zoomout.png'
 
-    <div className='flex flex-row gap-3 left-3 absolute top-[20%] z-10 bg-white/80 pt-8 p-5 shadow-2xl rounded-2xl text-black'>
+const OpenFullSize = ({ isOpen, setIsOpen }) => {
+
+  const icon = isOpen ? zoomout : zoomin;
+
+  return (
+    <div className='absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex justify-center items-center cursor-pointer' onClick={() => setIsOpen(!isOpen)}>
+      <img src={icon} className='w-6' />
     </div>
   )
 }
-export default openFullSize
+export default OpenFullSize

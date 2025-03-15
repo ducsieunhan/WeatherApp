@@ -23,7 +23,7 @@ export function useExtractDaily({ cityName, method = 'GET' }) {
     })
       .then(async (res) => {
         const data = await res.json();
-        // console.log({ data });
+        console.log({ data });
         setData(data);
       })
       .catch(err => {

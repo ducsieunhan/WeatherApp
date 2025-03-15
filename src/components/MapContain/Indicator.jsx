@@ -1,4 +1,4 @@
-import { faCircleInfo, faI, faX } from "@fortawesome/free-solid-svg-icons"
+import { faCircleInfo, faX } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
 
@@ -8,7 +8,7 @@ const Indicator = () => {
 
   return (
 
-    <div className='flex flex-row gap-3 left-3 absolute top-[20%] z-10 bg-white/80 pt-8 p-5 shadow-2xl rounded-2xl text-black'>
+    <div className='flex flex-row gap-3 left-3 absolute top-[20%] z-10 bg-white/80 pt-8 p-5 shadow-2xl rounded-2xl text-black md:text-[14px] lg:text-[15px] scale-90 lg:scale-100'>
       {!isClose && (<>
         <div className='flex flex-row gap-3'>
           <div className="w-[16px] h-[200px] rounded-2xl bg-[linear-gradient(to_bottom,#63eb63,#3dc63d,#116719,#ff0,#e60000,#9b0000)]"></div>

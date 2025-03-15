@@ -1,4 +1,3 @@
-import BackgroundLayout from "../components/BackgroundLayout"
 import ForecastOverall from "../components/ForecastHome"
 
 function Homepage() {

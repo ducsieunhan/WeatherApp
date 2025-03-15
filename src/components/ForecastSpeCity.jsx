@@ -27,8 +27,8 @@ const ForecastSpeCity = ({ humidity, name, tempMin, tempMax, description, condit
     <Link
       to={isCity ? `/city?city=${name}&label=${label}` : "#"}
       onClick={(e) => !isCity && e.preventDefault()}
-      className={`cursor-pointer text-[17px] w-[80%] mx-auto h-48 md:w-44 md:h-48 ${bg} ${redirect ? "group relative overflow-hidden z-0" : ""
-        } ${bgHover} rounded-xl p-5 flex flex-col items-center gap-3 border ${border} ${className}`}
+      className={` text-[17px] w-[80%] mx-auto h-48 md:w-44 md:h-48 ${bg} ${redirect ? "group relative overflow-hidden z-0" : ""
+        } ${bgHover} rounded-xl p-5 flex flex-col items-center gap-3 border ${border} ${className} `}
     >
       {/* Nội dung chung */}
       <h3 className={redirect ? "transition-all duration-300 ease-out group-hover:text-white" : ""}>

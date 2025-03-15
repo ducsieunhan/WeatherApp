@@ -54,12 +54,12 @@ const SearchCity = () => {
   };
 
   return (
-    <div className="relative flex gap-2 h-[50%] md:h-[65%] w-[200px] lg:w-[700px] ">
+    <div className="relative flex gap-2 h-[50%] md:h-[65%] w-[200px] md:w-[500px] lg:w-[700px] ">
       <FontAwesomeIcon icon={faSearch} className="mr-[1vw] absolute left-2 top-1/2 -translate-y-1/2 text-blue-400" />
       <input placeholder="Address, City, ..." type="text" value={cityName} onKeyPress={handleKeyPress} onChange={(e) => {
         setCityName(e.target.value);
       }}
-        className="text-[15px] md:text-[20px] h-full w-[80%] border border-slate-400 pl-5 lg:pl-10 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-400 rounded-md" />
+        className="text-[13px] md:text-[20px] h-full w-[80%] border border-slate-400 pl-7 lg:pl-10 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-400 rounded-md" />
       <p className="flex items-center cursor-pointer h-full border border-slate-400 px-4 hover:bg-blue-400 hover:text-white transition duration-200 rounded-md"
         onClick={handleSearch}
       >

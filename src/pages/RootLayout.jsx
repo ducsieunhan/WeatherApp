@@ -7,7 +7,7 @@ const RootLayout = () => {
     <div>
       <div className="w-full border-b border-slate-300"><Header /></div>
       <Outlet />
-      <div className="w-full border-t border-slate-300"><Footer /></div>
+      <div className="w-full border-t border-slate-300 mt-3"><Footer /></div>
     </div>
   )
 }

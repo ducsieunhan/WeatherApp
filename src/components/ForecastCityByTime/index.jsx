@@ -57,7 +57,7 @@ const ForecastCityByTime = () => {
     <div className="flex flex-col md:flex-row relative max-w-screen-xl mx-auto  md:items-start h-full justify-center  gap-5  text-white z-0">
       <div className="md:w-2/3 w-full h-full order-1 md:order-1  bg-white text-black flex flex-col gap-5">
         <div className=" border border-slate-300/80 px-4 pt-7 pb-4">
-          <h1 className="text-[1.5vw]  py-3">Weather forecast in {cityName} by hour</h1>
+          <h1 className="text-[20px] md:text-[35px]   py-3">Weather forecast in {cityName} by hour</h1>
           <ForecastByTimeList cityName={cityName} />
         </div>
         <ChartHourly cityName={cityName} dataRain={dataRainHourly} dataTemp={dataTempHourly} dataTime={dataTimeHourly} />
