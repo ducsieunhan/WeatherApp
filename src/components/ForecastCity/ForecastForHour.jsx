@@ -8,8 +8,8 @@ import Loading from "../Loading";
 import { UseExtractWeatherData } from "../../hooks/useExtractWeatherData";
 import { Link } from "react-router-dom";
 
-const ForecastForHour = ({ cityName }) => {
-  const { weather24hours, isLoading } = UseExtractWeatherData(cityName);
+const ForecastForHour = ({ cityName, currentTime }) => {
+  const { weather24hours, isLoading } = UseExtractWeatherData({ cityName, currentTime });
 
   // console.log(weather24hours);
 

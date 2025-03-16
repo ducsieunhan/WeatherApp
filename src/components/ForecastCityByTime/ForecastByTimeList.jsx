@@ -3,13 +3,13 @@ import { UseExtractWeatherData } from "../../hooks/useExtractWeatherData"
 import Loading from "../Loading";
 import PerTime from "./PerTime"
 
-const ForecastByTimeList = ({ cityName }) => {
+const ForecastByTimeList = ({ cityName, currentTime = 0 }) => {
 
   const [number, setNumber] = useState(6);
   const [isOpen, setIsOpen] = useState(false);
   const [read, setRead] = useState('Read more');
 
-  const { weather24hours, isLoading } = UseExtractWeatherData(cityName);
+  const { weather24hours, isLoading } = UseExtractWeatherData({ cityName, currentTime });
 
   const weatherHours = weather24hours.slice(0, number);
 

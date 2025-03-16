@@ -26,6 +26,10 @@ const router = createBrowserRouter([
         element: <CityDetailTime />
       },
       {
+        path: '/:cityName/Tomorrow',
+        element: <CityDetailTime />
+      },
+      {
         path: '/:cityName/:days',
         element: <CityDetailDays />
       },

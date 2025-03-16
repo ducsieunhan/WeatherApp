@@ -30,11 +30,15 @@ const ForecastSpecificCity = () => {
 
 
   const dailyForecast = weatherDaily.forecast?.forecastday || [];
+  // get current city time 
+  const currentTime = weatherDaily.location?.localtime;
+  const formatCurrentTime = currentTime.split(" ")[1].slice(0, 2);
 
   // console.log({ dailyForecast });
+  // console.log({ formatCurrentTime });
 
   // for chart
-  const dataHourly = (dailyForecast[0].hour).slice(0, 11);
+  const dataHourly = (dailyForecast[0].hour).slice(formatCurrentTime, parseInt(formatCurrentTime) + 12);
   // console.log({ dataHourly });
 
   //data for chart hourly
@@ -48,7 +52,7 @@ const ForecastSpecificCity = () => {
   const dataTempDaily = dailyForecast.map(daily => daily.day.avgtemp_c);
   // const dataTimeDaily = dataHourly.map(daily => daily.day.);
 
-  // console.log({ dataTimeDaily, dataTempDaily, dataRainDaily });
+  // console.log({ dataTimeHourly, dataTempHourly, dataRainHourly });
 
 
   if (isLoading) {
@@ -60,7 +64,7 @@ const ForecastSpecificCity = () => {
       <div className="md:w-2/3 w-full h-full order-1 md:order-1  flex flex-col gap-3">
         <IndicatorMain cityName={city} />
         <RainQuantityMainCity cityName={city} label={label} quantity={dailyForecast[0].day.totalprecip_mm} description={dailyForecast[0].day.condition.text} />
-        <ForecastForHour cityName={city} />
+        <ForecastForHour cityName={city} currentTime={formatCurrentTime} />
         <ChartHourly cityName={city} dataRain={dataRainHourly} dataTemp={dataTempHourly} dataTime={dataTimeHourly} />
         <ForecastForDays cityName={city} />
         <ChartDaily cityName={city} dataRain={dataRainDaily} dataTemp={dataTempDaily} dataTime={dataTimeDaily} />

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export function UseExtractWeatherData(cityName) {
+export function UseExtractWeatherData({ cityName, currentTime }) {
 
   const [isLoading, setIsLoading] = useState(false);
   const [extractedData, setExtractedData] = useState([]);
@@ -73,7 +73,7 @@ export function UseExtractWeatherData(cityName) {
     )
       .then(async (res) => {
         const data = await res.json();
-        // console.log({ data });
+        console.log({ data });
         setWeatherData(data);
 
       })
@@ -115,7 +115,7 @@ export function UseExtractWeatherData(cityName) {
           weathercode: weathercode[index],
           weatherDescription: getWeatherDescription(weathercode[index]),
         }))
-        .slice(0, 24);
+        .slice(currentTime, 24);
 
       setExtractedData(next24Hours);
     }
