@@ -26,11 +26,11 @@ const CityWeatherPinned = ({ currentCity, isLoading, cityName, daily = true }) =
 
 
       <div className="bg-light text-white  h-full w-full p-2 text-sm md:text-base flex flex-col gap-2 md:gap-0  rounded-md mt-10 ">
-        <p className="font-bold"><FontAwesomeIcon icon={faMapPin} /> {cityName}</p>
+        <p className="font-bold text-[20px] md:text-[25px] "><FontAwesomeIcon icon={faMapPin} /> {cityName}</p>
         <div className="flex flex-row justify-start items-center ml-3 relative">
           <img src={iconWeather} className="w-10 md:w-14 absolute" />
           <p className="text-[25px] md:text-[2.5vw] font-bold pl-20 pr-3"> {currentCityPinned.main?.temp.toFixed(1) ?? "Loading..."}&deg;</p>
-          <div className="font-bold text-[15px] md:text-[1.1vw] gap-1">
+          <div className="font-bold text-[15px] lg:text-[18px] gap-1">
             <p className="font-bold">
               {currentCityPinned.weather?.[0]?.description
                 ? capitalizeWords(currentCityPinned.weather[0].description)

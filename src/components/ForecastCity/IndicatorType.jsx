@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { faDroplet } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 

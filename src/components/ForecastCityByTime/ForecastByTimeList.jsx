@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { UseExtractWeatherData } from "../../hooks/useExtractWeatherData"
 import Loading from "../Loading";

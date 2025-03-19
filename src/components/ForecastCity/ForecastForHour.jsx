@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { faAngleLeft, faAngleRight, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Slider from "react-slick";
@@ -67,7 +68,7 @@ const ForecastForHour = ({ cityName, currentTime }) => {
       <div className="flex flex-row justify-between items-center">
         <p className="text-[15px] md:text-[25px]">
           Hourly weather in <FontAwesomeIcon icon={faSearch} />{" "}
-          <span className="underline decoration-dotted cursor-pointer text-medium">
+          <span className="underline decoration-dotted cursor-default text-medium hover:text-green-950">
             {cityName}
           </span>{" "}
           (24h)
@@ -79,7 +80,7 @@ const ForecastForHour = ({ cityName, currentTime }) => {
       <Slider {...settings} className="mb-5" >
         {weather24hours.map((timeAt, index) => (
           <ForecastSpeCity isCity={false} key={index} humidity={timeAt.humidity} name={timeAt.time} tempMin={timeAt.temperature} tempMax={timeAt.temperature} description={timeAt.weatherDescription} condition={timeAt.weatherDescription} label={''}
-            bg="bg-white/[0.1]" bgHover="hover:bg-medium/90 transition duration-[0.2s] hover:text-white" border="border-medium"
+            bg="bg-white/[0.1]" bgHover="hover:bg-medium/90 transition duration-[0.2s] hover:text-white cursor-default" border="border-medium"
           />
         ))}
       </Slider>

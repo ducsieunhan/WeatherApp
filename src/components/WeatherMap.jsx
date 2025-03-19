@@ -7,7 +7,6 @@ import Indicator from './MapContain/Indicator';
 import Loading from './Loading';
 import { useCoordinationCity } from '../hooks/useCoordinationCity';
 import { useLocation } from 'react-router-dom';
-import OpenFullSize from './MapContain/openFullSize';
 
 
 const WeatherMap = ({ cityName }) => {

@@ -87,7 +87,7 @@ const ForecastForHour = ({ cityName }) => {
       <div className="flex flex-col justify-between gap-2">
         <p className="text-[15px] md:text-[25px]">
           Daily weather in {" "}
-          <span className="underline decoration-dotted cursor-pointer text-medium">
+          <span className="underline decoration-dotted cursor-default text-medium hover:text-green-950">
             {cityName}
           </span>{" "}
         </p>
@@ -101,7 +101,7 @@ const ForecastForHour = ({ cityName }) => {
         {
           dailyForecast.map((daily) => (
             <ForecastSpeCity isCity={false} key={daily.date_epoch} humidity={daily.day.avghumidity} name={dateExtract(daily.date)} tempMin={daily.day.maxtemp_c} tempMax={daily.day.mintemp_c} description={textExtract(daily.day.condition.text)} condition={daily.day.condition.text} label={''}
-              bg="bg-white/[0.1]" bgHover="hover:bg-medium/90 transition duration-[0.2s] hover:text-white" border="border-medium"
+              bg="bg-white/[0.1]" bgHover="hover:bg-medium/90 transition duration-[0.2s] hover:text-white cursor-default" border="border-medium"
             />
           ))
         }

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 const SunData = ({ sunrise, sunset }) => {
   return (
     <div className=" h-28 relative my-2">

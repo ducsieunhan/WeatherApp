@@ -5,7 +5,6 @@ import ForecastByDailyList from "./ForecastByDailyList";
 import { useSpeCity } from "../../hooks/useSpeCity";
 import { useExtractDaily } from "../../hooks/useExtractDaily";
 import Loading from "../Loading";
-import ChartHourly from "../ForecastCity/LineChart/ChartHourly";
 import SunData from "../SunData";
 import ChartDaily from "../ForecastCity/LineChart/ChartDaily";
 

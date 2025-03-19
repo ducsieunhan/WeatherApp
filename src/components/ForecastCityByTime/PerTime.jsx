@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { faAngleDown, faCertificate, faDroplet, faEye, faGauge, faWind } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react";

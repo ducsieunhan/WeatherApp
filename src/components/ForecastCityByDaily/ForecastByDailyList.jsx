@@ -1,6 +1,6 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+/* eslint-disable no-unsafe-optional-chaining */
+/* eslint-disable react/prop-types */
 import { useExtractDaily } from "../../hooks/useExtractDaily";
-import { faCloudRain, faDroplet, faGauge, faSun, faTemperature1, faTemperature3, faTemperature4, faWind } from "@fortawesome/free-solid-svg-icons";
 import DailyCard from "./DailyCard";
 
 const ForecastByDailyList = ({ cityName, dayCount }) => {

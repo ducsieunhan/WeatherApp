@@ -6,6 +6,7 @@ import snow from '/public/icons/snow.png'
 import storm from '/public/icons/storm.png'
 import wind from '/public/icons/windy.png'
 import clear from '/public/icons/clear.png'
+import cloudy from '/public/icons/cloudy.png'
 import partlyCloudy from '/public/icons/partly-cloudy.png'
 import { useEffect, useState } from 'react'
 
@@ -47,6 +48,9 @@ export function useWeatherConditionIcon({ condition }) {
       }
       else if (condition.toLowerCase().includes('clear')) {
         setIconWeather(clear);
+      }
+      else if (condition.toLowerCase().includes('cloudy')) {
+        setIconWeather(cloudy);
       }
     }
   });
